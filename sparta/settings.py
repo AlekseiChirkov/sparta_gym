@@ -101,7 +101,7 @@ else:
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'sparta',
             'USER': 'postgres',
-            'PASSWORD': config('DB_PASS'),
+            'PASSWORD': os.getenv('DB_PASS', 'Optional default value'),
             'HOST': '127.0.0.1',
             'PORT': '5432',
         }
