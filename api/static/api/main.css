@@ -25,7 +25,7 @@
 }
 @media(max-width: 1000px){
     .header{
-        font-size: 30px;
+        font-size: 40px;
     }
 }
 .logo{
@@ -179,7 +179,7 @@
         font-family: 'Lato', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 80px;
+        font-size: 60px;
         line-height: 87%;
         display: flex;
         align-items: center;
@@ -219,7 +219,7 @@
         font-family: 'Lato', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 80px;
+        font-size: 60px;
         line-height: 87%;
         display: flex;
         align-items: center;
@@ -259,7 +259,7 @@
         font-family: 'Lato', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 80px;
+        font-size: 60px;
         line-height: 87%;
         display: flex;
         align-items: center;
