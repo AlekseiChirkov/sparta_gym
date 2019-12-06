@@ -33,6 +33,12 @@
     height: 100px;
 }
 @media(max-width: 1000px){
+    .logo{
+        width: 150px;
+        height: 150px;
+    }
+}
+@media(max-width: 1000px){
     .nav-items{
         display: none;
     }
@@ -67,12 +73,22 @@
     text-align: center;
     font-family: 'Lato', sans-serif;
 }
+@media(max-width: 1000px){
+    .wrapper nav{
+        font-size: 24px;
+    }
+}
 #check-menu{
     display: none;
 }
 #check-menu:checked ~ .main-menu{
     max-height: 500px;
-    font-size: 16px;
+    font-size: 24px;
+}
+@media(min-width: 1000px){
+    #check-menu:checked ~ .main-menu{
+        max-height: 500px;
+    }
 }
 .check-label{
     color: #fff;
@@ -109,8 +125,6 @@
     background-color: #000;
     font-family: 'Lato', sans-serif;
 }
-
-
 .description{
     top: 30%;
     width: 100%;
@@ -146,6 +160,11 @@
     align-items: center;
     margin-top: 5%;
 }
+@media(max-width: 1000px){
+    .description-content p{
+        font-size: 30px;
+    }
+}
 .description-content button{
     width: 223px;
     height: 50px;
@@ -155,6 +174,13 @@
     color: #fff;
     margin-top: 5%;
     font-family: 'Lato', sans-serif;
+}
+@media(max-width: 1000px){
+    .description-content button{
+        font-size: 30px;
+        width: 300px;
+        height: 80px;
+    }
 }
 .description-logo img{
     width: 450px;
@@ -344,6 +370,11 @@
     top: 62px;
     background: #696969;
 }
+@media(max-width: 1000px){
+    .left p{
+        font-size: 150%;
+    }
+}
 .about-img{
     width: 100px;
     height: 100px;
@@ -373,7 +404,7 @@
 .h1{
     text-align: center;
 }
-.h1 h6{
+.h1 h5{
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 600;
@@ -597,6 +628,11 @@
     margin-top: 20px;
     position: relative;
 }
+@media(max-width: 1000px){
+    .coach-description p{
+        font-size: 150%;
+    }
+}
 .subscription{
     padding: 150px 0;
     margin-top: -20px;
@@ -618,7 +654,7 @@
     letter-spacing: 0.9px;
     color: #12C2E9;
 }
-.subscription-head h2{
+.subscription-head h1{
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -727,6 +763,15 @@
     .subscription-type3{
         width: 80%;
     }
+    .drying{
+        font-size: 150%;
+    }
+    .building{
+        font-size: 150%;
+    }
+    .self{
+        font-size: 150%;
+    }
 }
 .gallery{
     width: 100%;
@@ -798,10 +843,11 @@
     margin-top: 30px;
 }
 .subscriptions-list1 subs{
-    width: 20%;
+    width: 30%;
 }
 .subs{
     border: solid 5px #ED213A;
+    width: 60%;
 }
 .subs h1{
     font-family: 'Lato', sans-serif;
@@ -818,7 +864,7 @@
 .subs-title{
     background: linear-gradient(90deg, #E100FF 0%, #F80759 100%), #ED213A;
     background-blend-mode: multiply, normal;
-    width: 363px;
+    width: 100%;
     height: 53px;
     font-family: 'Lato', sans-serif;
     font-style: normal;
@@ -831,6 +877,11 @@
     display:flex;
     justify-content:center;
     margin-top: 30px;
+}
+@media(max-width: 1000px){
+    .subs-title{
+        font-size: 150%;
+    }
 }
 .subscriptions-list1{
     display: flex;
@@ -846,15 +897,17 @@
     display: flex;
     justify-content: space-around;
     margin-top: 50px;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 96%;
 }
 .subscriptions-list4{
     display: flex;
     justify-content: space-around;
     margin-top: 50px;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 96%;
 }
 @media(max-width: 1200px){
     .subscriptions-list1{
@@ -889,13 +942,18 @@
     padding-left: 25%;
     margin-top: 20px;
 }
+@media(max-width: 1000px){
+    li{
+        font-size: 150%;
+    }
+}
 .news{
     width: 100%;
     padding-top: 200px;
     padding-bottom: 50px;
     padding-left: 5%;
 }
-.news h2{
+.news h1{
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -920,7 +978,7 @@
 .post{
     width: 15%;
 }
-.post h6{
+.post h4{
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -930,7 +988,7 @@
     color: #F80759;
     margin-top: 20px;
 }
-.post h4{
+.post h2{
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -960,6 +1018,15 @@
     .post{
         text-align: center;
         width: 80%;
+    }
+    .posts h4{
+        font-size: 18px;
+    }
+    .posts h2{
+        font-size: 24px;
+    }
+    .posts p{
+        font-size: 120%;
     }
 }
 .contacts{
@@ -1122,7 +1189,18 @@
         flex-direction: column;
         align-items: center;
     }
+    .info-2{
+        margin-top: 50px;
+    }
     .info-3{
         margin-top: 50px;
+    }
+    .con p{
+        font-size: 150%;
+    }
+    .con button{
+        font-size: 150%;
+        width: 250px;
+        height: 100px;
     }
 }
