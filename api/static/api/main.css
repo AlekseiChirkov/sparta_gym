@@ -1275,6 +1275,9 @@
         height: 100px;
         margin-left: 25%;
     }
+    .socialIcons{
+        margin-left: 15%;
+    }
 }
 @media(max-width: 1000px){
     h1{
