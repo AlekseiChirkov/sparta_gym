@@ -34,8 +34,8 @@
 }
 @media(max-width: 1000px){
     .logo{
-        width: 150px;
-        height: 150px;
+        width: 150%;
+        height: 150%;
     }
 }
 @media(max-width: 1000px){
@@ -75,7 +75,7 @@
 }
 @media(max-width: 1000px){
     .wrapper nav{
-        font-size: 24px;
+        font-size: 150%;
     }
 }
 #check-menu{
@@ -85,9 +85,9 @@
     max-height: 500px;
     font-size: 24px;
 }
-@media(min-width: 1000px){
+@media(max-width: 1000px){
     #check-menu:checked ~ .main-menu{
-        max-height: 500px;
+        font-size: 200%;
     }
 }
 .check-label{
