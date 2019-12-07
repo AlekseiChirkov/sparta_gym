@@ -82,12 +82,11 @@
 }
 @media(max-width: 1000px){
     #check-menu:checked ~ .main-menu{
-        font-size: 110%;
+        font-size: 150%;
         width: 250px;
     }
     .check-label{
-        font-size: 150%;
-        text-align: center;
+        font-size: 200%;
         margin-left: 30%;
     }
 }
@@ -371,11 +370,6 @@
     top: 62px;
     background: #696969;
 }
-@media(max-width: 1000px){
-    .left p{
-        font-size: 200%;
-    }
-}
 .about-img{
     width: 100px;
     height: 100px;
@@ -395,6 +389,15 @@
     .right{
         width: 70%;
         height: 30%;
+    }
+    .left h5{
+        font-size: 200%;
+    }
+    .left h1{
+        font-size: 300%;
+    }
+    .left p{
+        font-size: 200%;
     }
 }
 .about-coach{
@@ -499,9 +502,16 @@
     transition: all .5s;
 }
 @media(max-width: 1000px){
+    .h1 h5{
+        font-size: 150%;
+    }
+    .h1 h1{
+        font-size: 250%;
+        margin-top: 50px;
+    }
     .slide1{
-        height: 150px;
-        width: 100px;
+        height: 200px;
+        width: 150px;
         position: absolute;
         transform: translateX(0px) scale(1.5);
         z-index: 100;
@@ -509,8 +519,8 @@
         transition: all .5s;
     }
     .slide2{
-        height: 150px;
-        width: 100px;
+        height: 200px;
+        width: 150px;
         position: absolute;
         transform: translateX(-100px) scale(1.2);
         z-index: 90;
@@ -518,8 +528,8 @@
         transition: all .5s;
     }
     .slide3{
-        height: 150px;
-        width: 100px;
+        height: 200px;
+        width: 150px;
         position: absolute;
         transform: translateX(100px) scale(1.2);
         z-index: 90;
@@ -527,8 +537,8 @@
         transition: all .5s;
     }
     .slide4{
-        height: 150px;
-        width: 100px;
+        height: 200px;
+        width: 150px;
         position: absolute;
         transform: translateX(-200px) scale(1);
         z-index: 80;
@@ -536,8 +546,8 @@
         transition: all .5s;
     }
     .slide5{
-        height: 150px;
-        width: 100px;
+        height: 200px;
+        width: 150px;
         position: absolute;
         transform: translateX(200px) scale(1);
         z-index: 80;
@@ -585,8 +595,8 @@
 }
 @media(max-width: 1000px){
     #next{
-        height: 200%;
-        width: 200%;
+        height: 60px;
+        width: 200px;
         border: 2px solid red;
         font-family: 'Lato', sans-serif;
         font-size: 200%;
@@ -595,7 +605,7 @@
         line-height: 50px;
         left: 510px;
         top: 100px;
-        margin-top: 200px;
+        margin-top: 300px;
     }
 }
 #next:hover{
@@ -630,6 +640,9 @@
     position: relative;
 }
 @media(max-width: 1000px){
+    .coach-description h1{
+        font-size: 400%;
+    }
     .coach-description p{
         font-size: 200%;
     }
@@ -749,6 +762,12 @@
     color: #FEFEFE;
 }
 @media(max-width: 1000px){
+    .subscription-head h4{
+        font-size: 200%;
+    }
+    .subscription-head h1{
+        font-size: 300%;
+    }
     .subscription-types{
         flex-direction: column;
         align-items: center;
@@ -764,17 +783,16 @@
     .subscription-type3{
         width: 80%;
     }
-    .drying{
+    .subscription-type1 h3{
         font-size: 200%;
     }
-    .building{
-        font-size: 200%;
-        margin-top: 50px;
-    }
-    .self{
+    .subscription-type2 h3{
         font-size: 200%;
         margin-top: 50px;
     }
+    .subscription-type3 h3{
+        font-size: 200%;
+        margin-top: 50px;
 }
 .gallery{
     width: 100%;
@@ -812,8 +830,11 @@
     }
     .gallery-img img{
         margin: 20px 0;
-        width: 200%;
-        height: 200%;
+        width: 450px;
+        height: 600px;
+    }
+    .gallery-h2 h2{
+        font-size: 200%;
     }
 }
 .price{
@@ -881,6 +902,12 @@
     margin-top: 30px;
 }
 @media(max-width: 1000px){
+    .price-h h4{
+        font-size: 200%;
+    }
+    .price-h h2{
+        font-size: 300%;
+    }
     .subs-title{
         font-size: 150%;
     }
@@ -1028,6 +1055,9 @@
     .news{
         width: 100%;
     }
+    .news h1{
+        font-size: 300%;
+    }
     .posts{
         flex-direction: column;
         align-items: center;
@@ -1036,6 +1066,10 @@
     .post{
         text-align: center;
         width: 80%;
+    }
+    .posts img{
+        width: 400px;
+        height: 300px;
     }
     .posts h4{
         font-size: 200%;
@@ -1207,12 +1241,21 @@
         flex-direction: column;
         align-items: center;
     }
-    .info-1{
-        font-size: 200%;
+    .info-1 p{
+        font-size: 150%;
+    }
+    .info-1 h3{
+        font-size: 150%;
     }
     .info-2{
         margin-top: 50px;
         font-size: 200%;
+    }
+    .info-2 h3{
+        font-size: 120%;
+    }
+    .info-2 p{
+        font-size: 120%;
     }
     .info-3{
         margin-top: 50px;
@@ -1228,7 +1271,32 @@
     }
     .con button{
         font-size: 200%;
-        width: 200%;
-        height: 200%;
+        width: 350px;
+        height: 100px;
+        margin-left: 25%;
     }
+}
+@media(max-width: 1000px){
+    h1{
+        font-size: 200%;
+    }
+    h2{
+        font-size: 200%;
+    }
+    h3{
+        font-size: 200%;
+    }
+    h4{
+        font-size: 200%;
+    }
+    h5{
+        font-size: 200%;
+    }
+    h6{
+        font-size: 200%;
+    }
+    p{
+        font-size: 200%;
+    }
+    
 }
