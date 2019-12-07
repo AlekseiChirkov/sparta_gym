@@ -429,7 +429,7 @@
     justify-content: center;
     position: relative;
     display: flex;
-    margin-top: 100px;
+    margin-top: 200px;
 }
 .slide1{
     height: 250px;
@@ -510,8 +510,8 @@
         margin-top: 50px;
     }
     .slide1{
-        height: 200px;
-        width: 150px;
+        height: 300px;
+        width: 200px;
         position: absolute;
         transform: translateX(0px) scale(1.5);
         z-index: 100;
@@ -519,8 +519,8 @@
         transition: all .5s;
     }
     .slide2{
-        height: 200px;
-        width: 150px;
+        height: 300px;
+        width: 200px;
         position: absolute;
         transform: translateX(-100px) scale(1.2);
         z-index: 90;
@@ -528,8 +528,8 @@
         transition: all .5s;
     }
     .slide3{
-        height: 200px;
-        width: 150px;
+        height: 300px;
+        width: 200px;
         position: absolute;
         transform: translateX(100px) scale(1.2);
         z-index: 90;
@@ -537,8 +537,8 @@
         transition: all .5s;
     }
     .slide4{
-        height: 200px;
-        width: 150px;
+        height: 300px;
+        width: 200px;
         position: absolute;
         transform: translateX(-200px) scale(1);
         z-index: 80;
@@ -546,8 +546,8 @@
         transition: all .5s;
     }
     .slide5{
-        height: 200px;
-        width: 150px;
+        height: 300px;
+        width: 200px;
         position: absolute;
         transform: translateX(200px) scale(1);
         z-index: 80;
@@ -591,7 +591,7 @@
     line-height: 30px;
     left: 510px;
     top: 100px;
-    margin-top: 350px;
+    margin-top: 400px;
 }
 @media(max-width: 1000px){
     #next{
@@ -605,7 +605,7 @@
         line-height: 50px;
         left: 510px;
         top: 100px;
-        margin-top: 300px;
+        margin-top: 450px;
     }
 }
 #next:hover{
@@ -616,7 +616,7 @@
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
+    margin-top: 100px;
     position: relative;
 }
 .coach-description h1{
@@ -793,6 +793,9 @@
     .subscription-type3 h3{
         font-size: 200%;
         margin-top: 50px;
+    }
+    .subscription-types p{
+        font-size: 180%
     }
 }
 .gallery{
