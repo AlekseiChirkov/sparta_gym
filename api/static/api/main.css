@@ -842,12 +842,9 @@
     color: #FFFFFF;
     margin-top: 30px;
 }
-.subscriptions-list1 subs{
-    width: 30%;
-}
 .subs{
     border: solid 5px #ED213A;
-    width: 60%;
+    width: 20%;
 }
 .subs h1{
     font-family: 'Lato', sans-serif;
@@ -855,7 +852,7 @@
     font-weight: bold;
     font-size: 40px;
     margin-top: 10px;
-    line-height: 50%;
+    line-height: 100%;
     align-items: center;
     text-align: center;
     letter-spacing: 1.2px;
@@ -897,17 +894,21 @@
     display: flex;
     justify-content: space-around;
     margin-top: 50px;
-    margin-left: 2%;
-    margin-right: 2%;
-    width: 96%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.subscriptions-list3 .subs{
+    width: 25%;
 }
 .subscriptions-list4{
     display: flex;
     justify-content: space-around;
     margin-top: 50px;
-    margin-left: 2%;
-    margin-right: 2%;
-    width: 96%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.subscriptions-list4 .subs{
+    width: 25%;
 }
 @media(max-width: 1200px){
     .subscriptions-list1{
@@ -944,7 +945,19 @@
 }
 @media(max-width: 1000px){
     li{
-        font-size: 150%;
+        font-size: 200%;
+    }
+    .subscriptions-list1 .subs{
+        width: 60%;
+    }
+    .subscriptions-list2 .subs{
+        width: 60%;
+    }
+    .subscriptions-list3 .subs{
+        width: 85%;
+    }
+    .subscriptions-list4 .subs{
+        width: 85%;
     }
 }
 .news{
