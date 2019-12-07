@@ -34,8 +34,8 @@
 }
 @media(max-width: 1000px){
     .logo{
-        width: 150%;
-        height: 150%;
+        width: 120%;
+        height: 120%;
     }
 }
 @media(max-width: 1000px){
@@ -162,7 +162,7 @@
 }
 @media(max-width: 1000px){
     .description-content p{
-        font-size: 30px;
+        font-size: 200%;
     }
 }
 .description-content button{
@@ -177,7 +177,7 @@
 }
 @media(max-width: 1000px){
     .description-content button{
-        font-size: 30px;
+        font-size: 200%;
         width: 300px;
         height: 80px;
     }
@@ -216,7 +216,7 @@
         font-family: 'Lato', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 30px;
+        font-size: 200%;
         line-height: 150%;
         display: flex;
         align-items: center;
@@ -245,7 +245,7 @@
         font-family: 'Lato', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 60px;
+        font-size: 200%;
         line-height: 87%;
         display: flex;
         align-items: center;
@@ -285,7 +285,7 @@
         font-family: 'Lato', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 60px;
+        font-size: 200%;
         line-height: 87%;
         display: flex;
         align-items: center;
@@ -372,7 +372,7 @@
 }
 @media(max-width: 1000px){
     .left p{
-        font-size: 150%;
+        font-size: 200%;
     }
 }
 .about-img{
@@ -584,14 +584,14 @@
 }
 @media(max-width: 1000px){
     #next{
-        height: 30px;
-        width: 100px;
+        height: 200%;
+        width: 200%;
         border: 2px solid red;
         font-family: 'Lato', sans-serif;
-        font-size: 16px;
+        font-size: 200%;
         color: red;
         text-align: center;
-        line-height: 30px;
+        line-height: 50px;
         left: 510px;
         top: 100px;
         margin-top: 200px;
@@ -630,7 +630,7 @@
 }
 @media(max-width: 1000px){
     .coach-description p{
-        font-size: 150%;
+        font-size: 200%;
     }
 }
 .subscription{
@@ -764,13 +764,15 @@
         width: 80%;
     }
     .drying{
-        font-size: 150%;
+        font-size: 200%;
     }
     .building{
-        font-size: 150%;
+        font-size: 200%;
+        margin-top: 50px;
     }
     .self{
-        font-size: 150%;
+        font-size: 200%;
+        margin-top: 50px;
     }
 }
 .gallery{
@@ -798,6 +800,10 @@
     flex-direction: row;
     align-items: center;
 }
+.gallery-img img{
+    width: 300px;
+    height: 370px;
+}
 @media(max-width: 1500px){
     .gallery-img{
         flex-direction: column;
@@ -805,11 +811,9 @@
     }
     .gallery-img img{
         margin: 20px 0;
+        width: 200%;
+        height: 200%;
     }
-}
-.gallery-img img{
-    width: 300px;
-    height: 370px;
 }
 .price{
     width: 100%;
@@ -1033,13 +1037,13 @@
         width: 80%;
     }
     .posts h4{
-        font-size: 18px;
+        font-size: 200%;
     }
     .posts h2{
-        font-size: 24px;
+        font-size: 200%;
     }
     .posts p{
-        font-size: 120%;
+        font-size: 200%;
     }
 }
 .contacts{
@@ -1202,18 +1206,28 @@
         flex-direction: column;
         align-items: center;
     }
+    .info-1{
+        font-size: 200%;
+    }
     .info-2{
         margin-top: 50px;
+        font-size: 200%;
     }
     .info-3{
         margin-top: 50px;
     }
+    .con h4{
+        font-size: 200%;
+    }
+    .con h1{
+        font-size: 200%;
+    }
     .con p{
-        font-size: 150%;
+        font-size: 200%;
     }
     .con button{
-        font-size: 150%;
-        width: 250px;
-        height: 100px;
+        font-size: 200%;
+        width: 200%;
+        height: 200%;
     }
 }
