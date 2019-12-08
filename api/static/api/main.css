@@ -3,7 +3,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #000;
     font-family: 'Lato', sans-serif;
 }
 .nav-items a:hover{
@@ -16,12 +15,15 @@
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 900;
-    font-size: 16px;
+    font-size: 20px;
     color: #FFFFFF;
     text-decoration: none;
     position: fixed;
     width: 100%;
     z-index: 1000;
+    background: #111111;
+    background-blend-mode: multiply;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 @media(max-width: 1000px){
     .header{
@@ -29,8 +31,8 @@
     }
 }
 .logo{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 @media(max-width: 1000px){
     .logo{
@@ -46,7 +48,7 @@
 .items{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 .nav-items a{
@@ -68,7 +70,7 @@
     margin-left: 50%;
     width: 320px;
     height: 40px;
-    background-color: #000;
+    background-color: #111111;
     position: relative;
     text-align: center;
     font-family: 'Lato', sans-serif;
@@ -128,13 +130,19 @@
 .description{
     top: 30%;
     width: 100%;
-    padding: 250px 0;
+    padding: 325px 0;
     font-family: 'Lato', sans-serif;
+    font-size: 24px;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
     align-items: center;
     position: relative;
+    background: url('img/Gallery/desription.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    background-color: rgba(0,0,0,.9);
 }
 .description-content{
     width: 55%;
@@ -183,8 +191,8 @@
     }
 }
 .description-logo img{
-    width: 450px;
-    height: 550px;
+    width: 336px;
+    height: 413px;
     top: 194px;
 }
 @media(max-width: 1450px){
@@ -312,20 +320,22 @@
     }
 }
 .about-us{
-    background-color: #000;
     color: #fff;
     font-family: 'Lato', sans-serif;
-    padding: 50px 0;
+    padding: 100px 0;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
     align-items: center;
     position: relative;
+    background: #111111;
+    background-blend-mode: multiply;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .left{
     width: 40%;
 }
-.left h6{
+.left h5{
     letter-spacing: 0.9px;
     display: flex;
     align-items: center;
@@ -354,11 +364,11 @@
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 100%;
+    font-size: 20px;
     line-height: 150%;
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 .right{
     width: 40%;
@@ -403,7 +413,10 @@
 .about-coach{
     justify-content: center;
     position: relative;
-    padding-top: 5%;
+    padding: 100px 0;
+    background: #111111;
+    background-blend-mode: multiply;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .h1{
     text-align: center;
@@ -648,11 +661,14 @@
     }
 }
 .subscription{
-    padding: 150px 0;
-    margin-top: -20px;
-    width: 100%;
+    padding: 100px 0;
+    margin-left: -10px;
     text-align: center;
     position: relative;
+    background: url('img/Gallery/services.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
 }
 .subscription-head{
     text-align: center;
@@ -802,7 +818,10 @@
     width: 100%;
     position: relative;
     justify-content: center;
-    padding-top: 100px;
+    padding: 100px 0;
+    background: #111111;
+    background-blend-mode: multiply;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .gallery-h2{
     font-family: 'Lato', sans-serif;
@@ -845,7 +864,13 @@
 }
 .price{
     width: 100%;
-    padding-top: 150px;
+    padding: 100px 0;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    position: relative;
+    background: #111111;
+    background-blend-mode: multiply;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .price-h{
     text-align: center;
@@ -1000,9 +1025,11 @@
 }
 .news{
     width: 100%;
-    padding-top: 200px;
-    padding-bottom: 50px;
-    padding-left: 5%;
+    padding: 100px 0;
+    background: url('img/Gallery/gallerybg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
 }
 .news h1{
     font-family: 'Lato', sans-serif;
@@ -1090,6 +1117,9 @@
 .contacts{
     width: 100%;
     padding: 100px 0;
+    background: #111111;
+    background-blend-mode: multiply;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .con h4{
     font-family: 'Lato', sans-serif;
@@ -1264,7 +1294,7 @@
         font-size: 120%;
     }
     .info-3{
-        margin-top: 50px;
+        margin-top: 150px;
     }
     .con h4{
         font-size: 200%;
