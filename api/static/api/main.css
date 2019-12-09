@@ -783,6 +783,12 @@
     border: 5px solid #ED213A;
     margin-top: 50px;
 }
+@media screen and (max-width: 1400px){
+    .gallery-img img:hover{
+        transform: scale(1.5);
+        transition: all .7s;
+    }
+}
 @media(max-width: 1000px){
     .gallery-img{
         flex-direction: column;
