@@ -14,6 +14,10 @@ def home(request):
     return render(request, 'api/home.html')
 
 
+def registration(request):
+    return render(request, 'api/registration.html')
+
+
 class SubscriptionViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated, )
     queryset = Subscription.objects.all()

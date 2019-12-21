@@ -17,4 +17,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('user/', views.CustomRegisterView.as_view()),
     path('', views.home, name='home'),
+    path('registration/', views.registration, name='registration'),
 ]
