@@ -1,5 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render
+from django.contrib import messages
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.exceptions import ParseError
@@ -7,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_auth.registration.views import RegisterView
 
 from .serializers import *
-from .models import *
+from .forms import *
 
 
 def home(request):
@@ -15,7 +16,14 @@ def home(request):
 
 
 def registration(request):
-    return render(request, 'api/registration.html')
+    form = UserCreationForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        print(request.POST)
+        print(form.cleaned_data)
+        data = form.cleaned_data
+        new_form = form.save()
+        messages.success(request, 'Администрация SpartA Gym благодарит вас за регистрацию!')
+    return render(request, 'api/registration.html', locals())
 
 
 class SubscriptionViewSet(viewsets.ModelViewSet):
@@ -108,38 +116,8 @@ class ProductViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class RoleViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated, )
-    queryset = Role.objects.all()
-    serializer_class = RoleSerializer
-
-    def get(self, request):
-        role = self.queryset.all()
-        serializer = self.serializer_class(role, namy=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def post(self, request):
-        serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def delete(self, request):
-        pk = request.data.get('id', None)
-        if pk is None:
-            raise ParseError('id is required')
-
-        try:
-            role = self.queryset.get(id=pk)
-        except Role.DoesNotExist:
-            raise Http404
-        else:
-            role.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-
-
 class CustomRegisterView(RegisterView):
-    queryset = User.objects.all()
+    queryset = MyUser.objects.all()
     serializer_class = CustomUserDetailsSerializer
 
     def get(self, request):
@@ -160,7 +138,7 @@ class CustomRegisterView(RegisterView):
 
         try:
             user = self.queryset.get(id=pk)
-        except User.DoesNotExist:
+        except MyUser.DoesNotExist:
             raise Http404
         else:
             user.delete()

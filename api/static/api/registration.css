@@ -6,6 +6,76 @@
     font-family: 'Lato', sans-serif;
     font-size: 20px;
 }
+.form{
+    background: url('img/Gallery/desription.png');
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,.9);
+    background-size: cover;
+    padding-bottom: 7%;
+}
+.form h1{
+    padding-top: 200px;
+    text-align: center;
+    color: #12C2E9;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+}
+.form p{
+    text-align: center;
+    color: #12C2E9;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+}
+form{
+    color: #12C2E9;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 30%; 
+}
+form button{
+    margin-right: 20%;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(105.17deg, #12C2E9 -18.4%, #FF007A 112.98%);
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    width: 150px;
+    height: 50px;
+}
+@media screen and (max-width: 1500px){
+    form{
+    color: #12C2E9;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 20%; 
+}
+form button{
+    margin-right: 20%;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(105.17deg, #12C2E9 -18.4%, #FF007A 112.98%);
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    width: 150px;
+    height: 50px;
+}
+}
 .nav-items a:hover{
     color: red;
 }
@@ -87,6 +157,9 @@
     .check-label{
         font-size: 200%;
         margin-left: 30%;
+    }
+    .main-menu a{
+        font-size: 110%;
     }
 }
 .check-label{
