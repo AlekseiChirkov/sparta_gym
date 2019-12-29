@@ -115,3 +115,12 @@ class Payment(models.Model):
 
     def get_sum(self):
         return sum(item.get_cost() for item in self.products.all())
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=64)
+    text = models.TextField(max_length=1024)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.title)

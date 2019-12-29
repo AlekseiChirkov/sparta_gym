@@ -12,7 +12,8 @@ from .forms import *
 
 
 def home(request):
-    return render(request, 'api/home.html')
+    posts = Post.objects.all().order_by('date')
+    return render(request, 'api/home.html', {'posts': posts})
 
 
 def registration(request):
@@ -25,6 +26,8 @@ def registration(request):
         messages.success(request, 'Администрация SpartA Gym благодарит вас за регистрацию!')
     return render(request, 'api/registration.html', locals())
 
+def train_constructor(request):
+    return render(request, 'api/train_construct.html')
 
 class SubscriptionViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated, )
@@ -232,4 +235,34 @@ class PaymentProductViewSet(viewsets.ModelViewSet):
             raise Http404
         else:
             payment.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    def get(self, request):
+        post = self.queryset.all()
+        serializer = self.serializer_class(post, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def delete(self, request):
+        pk = request.data.get()
+        if pk is None:
+            raise ParseError('id is required')
+
+        try:
+            post = self.queryset.get(id=pk)
+        except Post.DoesNotExist:
+            raise Http404
+        else:
+            post.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)

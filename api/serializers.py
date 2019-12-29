@@ -64,3 +64,9 @@ class PaymentProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = PaymentProduct
         fields = ('id', 'product', 'count', 'total_price')
+
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ('id', 'title', 'text', 'date')
