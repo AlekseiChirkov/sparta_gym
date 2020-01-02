@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render
 from django.contrib import messages
+from django.views import generic
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.exceptions import ParseError
@@ -12,9 +13,8 @@ from .forms import *
 
 
 def home(request):
-    posts = Post.objects.all().order_by('date')
+    posts = Post.objects.all().order_by('date')[:4]
     return render(request, 'api/home.html', {'posts': posts})
-
 
 def registration(request):
     form = UserCreationForm(request.POST or None)

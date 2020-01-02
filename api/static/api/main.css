@@ -1001,8 +1001,9 @@
     line-height: 200%;
     align-items: center;
     color: #F80759;
-    margin-top: 20px;
+    margin-top: 40px;
     width: 150%;
+    margin-left: -25%;
 }
 .post h2{
     font-family: 'Lato', sans-serif;
