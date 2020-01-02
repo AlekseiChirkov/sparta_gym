@@ -1019,22 +1019,53 @@
         width: 100%;
     }
     .news h1{
-        font-size: 300%;
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 60px;
+        line-height: 80%;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #FFFFFF;
     }
     .post{
         width: 80%;
-        margin-left: 5%;
         justify-content: space-around;
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
     }
     .post h4{
-        font-size: 200%;
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 200%;
+        align-items: center;
+        color: #F80759;
+        margin-top: 40px;
+        margin-left: -25%;
     }
     .post h2{
-        font-size: 200%;
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 133%;
+        align-items: center;
+        color: #FFFFFF;
     }
     .text{
-        font-size: 200%;
-        width: 100%;
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 171%;
+        align-items: center;
+        color: #FFFFFF;
     }
 }
 .contacts{
