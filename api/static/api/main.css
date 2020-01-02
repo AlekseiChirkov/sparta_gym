@@ -1031,7 +1031,7 @@
         color: #FFFFFF;
     }
     .post{
-        width: 80%;
+        width: 60%;
         justify-content: space-around;
         margin-top: 50px;
         margin-left: auto;
@@ -1062,7 +1062,7 @@
         font-family: 'Lato', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 24px;
+        font-size: 30px;
         line-height: 171%;
         align-items: center;
         color: #FFFFFF;

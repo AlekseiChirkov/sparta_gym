@@ -13,7 +13,7 @@ from .forms import *
 
 
 def home(request):
-    posts = Post.objects.all().order_by('date')[:4]
+    posts = Post.objects.order_by('date')[:4]
     return render(request, 'api/home.html', {'posts': posts})
 
 def registration(request):
