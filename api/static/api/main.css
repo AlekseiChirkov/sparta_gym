@@ -980,18 +980,10 @@
     text-transform: uppercase;
     color: #FFFFFF;
 }
-.posts{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 50px;
-}
-.posts img{
-    width: 245px;
-    height: 216px;
-}
 .post{
     width: 20%;
+    justify-content: space-around;
+    margin-top: 50px;
 }
 .post h4{
     font-family: 'Lato', sans-serif;
@@ -1003,7 +995,6 @@
     color: #F80759;
     margin-top: 40px;
     width: 150%;
-    margin-left: -25%;
 }
 .post h2{
     font-family: 'Lato', sans-serif;
@@ -1014,7 +1005,7 @@
     align-items: center;
     color: #FFFFFF;
 }
-.post p{
+.text{
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -1030,27 +1021,18 @@
     .news h1{
         font-size: 300%;
     }
-    .posts{
-        flex-direction: column;
-        align-items: center;
-        margin: 50px 0;
-    }
     .post{
-        text-align: center;
         width: 80%;
+        margin-left: 5%;
+        justify-content: space-around;
     }
-    .posts img{
-        width: 400px;
-        height: 300px;
-        margin-top: 50px;
-    }
-    .posts h4{
+    .post h4{
         font-size: 200%;
     }
-    .posts h2{
+    .post h2{
         font-size: 200%;
     }
-    .posts p{
+    .text{
         font-size: 200%;
         width: 100%;
     }
