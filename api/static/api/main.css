@@ -1023,7 +1023,7 @@
     align-items: center;
     color: #FFFFFF;
 }
-@media(max-width: 1200px){
+@media screen and (max-width: 1200px){
     .news{
         width: 100%;
     }
@@ -1052,6 +1052,7 @@
     }
     .posts p{
         font-size: 200%;
+        width: 100%;
     }
 }
 .contacts{
