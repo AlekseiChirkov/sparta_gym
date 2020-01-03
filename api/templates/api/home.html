@@ -272,6 +272,7 @@
 
     <div class="news">
         <h1>Новости</h1>
+        <div class="posts">
         {% for post in posts %}
             <div class="post">
                 <h4>{{ post.title }}</h4>
@@ -279,6 +280,7 @@
                 <h2>{{ post.date }}</h2>
             </div>
         {% endfor %}
+        </div>
     </div>
 
 
