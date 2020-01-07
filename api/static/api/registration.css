@@ -11,7 +11,7 @@
     background-repeat: no-repeat;
     background-color: rgba(0,0,0,.9);
     background-size: cover;
-    padding-bottom: 7%;
+    height: 100vh;
 }
 .form h1{
     padding-top: 200px;
@@ -37,43 +37,51 @@ form{
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: normal;
-    margin-top: 100px;
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     padding-right: 30%; 
 }
 form button{
-    margin-right: 20%;
     border: none;
     border-radius: 10px;
     background: linear-gradient(105.17deg, #12C2E9 -18.4%, #FF007A 112.98%);
     color: #fff;
     font-family: 'Lato', sans-serif;
-    width: 150px;
+    width: 225px;
     height: 50px;
+    margin-top: 20px;
+}
+.container form{
+    margin-right: 10%;
 }
 @media screen and (max-width: 1500px){
+    .form{
+        height: 100vh;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
     form{
-    color: #12C2E9;
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding-right: 20%; 
-}
-form button{
-    margin-right: 20%;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(105.17deg, #12C2E9 -18.4%, #FF007A 112.98%);
-    color: #fff;
-    font-family: 'Lato', sans-serif;
-    width: 150px;
-    height: 50px;
+        color: #12C2E9;
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding-right: 20%; 
+    }
+    form button{
+        margin-right: 20%;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(105.17deg, #12C2E9 -18.4%, #FF007A 112.98%);
+        color: #fff;
+        font-family: 'Lato', sans-serif;
+        width: 150px;
+        height: 50px;
 }
 }
 .nav-items a:hover{
