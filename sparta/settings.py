@@ -101,7 +101,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'sparta',
-            'USER': 'postgres',
+            'USER': 'alex',
             'PASSWORD': config('DB_PASS'),
             'HOST': '127.0.0.1',
             'PORT': '5432',
@@ -164,5 +164,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 django_heroku.settings(locals())
