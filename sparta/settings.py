@@ -28,7 +28,7 @@ SECRET_KEY = 'cyjxoy#%df#@02xd3$75&-p=f6!q&gqstx#+8t)eis0ey@+jxg' #config('SECRE
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False #config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['165.227.194.181']
+ALLOWED_HOSTS = ['159.65.217.210']
 
 
 # Application definition
