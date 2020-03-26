@@ -2,48 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     {% load static %}
     <link rel="stylesheet" href="{% static 'api/registration.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Registration</title>
 </head>
 <body>
-    <div class="header">
-        <div class="items">
-            <img class="logo" src="{% static 'api/img/Logos/WS@72x-8.png' %}" alt="logo">
-            <nav class="navbar">
-                <div class="wrapper">
-                    <input type="checkbox" id="check-menu">
-                    <label for="check-menu" class="check-label">Меню</label>
-                    <nav class="main-menu" id="menu">
-                        <a href="../">Главная</a>
-                        <a href="#">Профиль</a>
-                        <a href="#gallery">Галерея</a>
-                        <a href="#contacts">Контакты</a>
-                        <a href="#">Магазин</a>
-                        <a href="#">Акции</a>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header">
+                <div class="header__body">
+                    <a href="#" class="header__logo">
+                        <img id="logo" src="{% static 'api/img/Logos/WS@72x-8.png' %}">
+                    </a>
+                    <div class="header__burger">
+                        <span></span>
+                    </div>
+                    <nav class="header__menu">
+                        <ul class="header__list">
+                            <li>
+                                <a href="#" class="header__link">Главная</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header__link">Профиль</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header__link">Галерея</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header__link">Контакты</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header__link">Магазин</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header__link">Акции</a>
+                            </li>
+                        </ul>
                     </nav>
                 </div>
-                <ul class="nav-items">
-                    <li><a href="../">Главная</a></li>
-                    <li><a href="">Профиль</a></li>
-                    <li><a href="#gallery">Галерея</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
-                    <li><a href="">Магазин</a></li>
-                    <li><a href="">Акции</a></li>
-                </ul>
-            </nav>
+            </div>
         </div>
     </div>
     
     
-    
-    <div class="form">
-        <div class="container">
-            <h1>Уже собрались начать?<br>
-            Тогда регистрируйтесь и вперед, покорять новые вершины!</h1>
-            <p>ВНИМАНИЕ! На данный момент личный кабинет в разработке, зарегистрируйтесь, что бы получать все новости о нас на почту и быть первым, кто сможет воспользоваться нашей новейшей разработкой: Полностью автоматизированное посещение тренировок!</p>
-            <form action="" method="post">
+    <div class="background">
+        <div class="content">
+            <div class="content__text">
+                <h1>Уже собрались начать?<br>
+                Тогда регистрируйтесь и вперед, покорять новые вершины!</h1>
+                <p>ВНИМАНИЕ! На данный момент личный кабинет в разработке, зарегистрируйтесь, что бы получать все новости о нас на почту и быть первым, кто сможет воспользоваться нашей новейшей разработкой: Полностью автоматизированное посещение тренировок!</p>
+            </div>
+            <form action="" method="post" class="content__form">
                 {% if messages %}
                     {% for message in messages %}
                     <p class="{{ message.tags }}">{{message}}</p>
@@ -55,5 +66,10 @@
             </form>
         </div>
     </div>
+
+
+
+    <script src="{% static 'api/jquery/jQuery.min.js' %}"></script>
+    <script src="{% static 'api/signup.js' %}"></script>
 </body>
 </html>

@@ -23,10 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'cyjxoy#%df#@02xd3$75&-p=f6!q&gqstx#+8t)eis0ey@+jxg' #config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = ['208.68.36.62', 'sparta-gym.com.kg']
 
@@ -100,9 +100,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'sparta',
-            'USER': 'alex',
-            'PASSWORD': 'Aleksissanchez98',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASS'),
             'HOST': '127.0.0.1',
             'PORT': '5432',
         }
@@ -141,8 +141,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'youremail@gmail.com'
-EMAIL_HOST_PASSWORD = 'yourpassword'
+EMAIL_HOST_USER = 'tektonikboy98@gmail.com'
+EMAIL_HOST_PASSWORD = 'byoteyhvlixreapg'
 EMAIL_PORT = 587
 
 

@@ -1,8 +1,6 @@
 from django import forms
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django.http import HttpResponse
-
 
 from . models import *
 
@@ -59,8 +57,6 @@ class UserChangeForm(forms.ModelForm):
         model = MyUser
         fields = ('email', 'password', 'username', 'is_active', 'is_admin')
 
-
-
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
         # This is done here, rather than on the field, because the
@@ -94,3 +90,11 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ()
+
+
+# class SignupForm(UserCreationForm):
+#     email = forms.EmailField(max_length=200)
+#
+#     class Meta:
+#         model = MyUser
+#         fields = ('username', 'email', 'password1', 'password2')
