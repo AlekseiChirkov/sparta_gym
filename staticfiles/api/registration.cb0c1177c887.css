@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+}
+
+
+
+.container{
+    max-width: 1180px;
+    margin: 0 auto;
+}
+.header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+}
+.header:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+.header__body{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    height: 160px;
+    align-items: center;
+}
+.header__logo{
+    flex: 0 0 150px;
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+}
+.header__logo img{
+    max-width: 100%;
+}
+.header__burger{
+    display: none;
+}
+.header__menu{}
+.header__list{
+    display: flex;
+    position: relative;
+    z-index: 2;
+}
+.header__list li{
+    list-style: none;
+    margin:  0 0 0 15px;
+}
+.header__link{
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: flex-end;
+    text-align: center;
+    color: #FFFFFF;
+}
+.header__link:hover{
+    color: red;
+}
+@media(max-width: 767px){
+    body.lock{
+        overflow: hidden; 
+    }
+    .header__body{
+        height: 100px;
+    }
+    .header__logo{
+        flex: 0 0 80px;
+    }
+    .header__burger{
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 20px;
+        position: relative;
+        z-index: 3;
+    }
+    .header__burger span{
+        position: absolute;
+        background-color: #fff;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        top: 9px;
+        transition: all 0.3s ease 0s;
+    }
+    .header__burger:before,
+    .header__burger:after{
+        content: '';
+        background-color: #fff;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        left: 0;
+        transition: all 0.3s ease 0s;
+    }
+    .header__burger:before{
+        top: 0;
+    }
+    .header__burger:after{
+        bottom: 0;
+    }
+    .header__burger.active:before{
+        transform: rotate(45deg);
+        top: 9px;
+    }
+    .header__burger.active:after{
+        transform: rotate(-45deg);
+        bottom: 9px;
+    }
+    .header__burger.active span{
+        transform: scale(0);
+    }
+    .header__menu{
+        position: fixed;
+        overflow: auto;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        padding: 110px 10px 20px 10px;
+        transition: all 0.3s ease 0s;
+    }
+    .header__menu.active{
+        top: 0;
+    }
+    .header__list{
+        display: block;
+    }
+    .header__list li{
+        margin: 40px;
+    }
+    .header__link{
+        font-size: 24px;
+    }
+}
+
+
+
+.background{
+    background: url("img/Gallery/desription.decf774a425a.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: rgba(0,0,0,.9);
+    width: 100%;
+    height: 100vh;
+    padding: 160px 0 0 0; 
+}
+.content{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+.content h1{
+    font-size: 36px;
+    text-align: center;
+    color: #12C2E9;
+}
+.content__text p{
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+}
+.content__form p{
+    color: white;
+    margin: 0 35% 0 40%;
+}
+.content button{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-top: 20px;
+    width: 230px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(105.17deg, #FF2E00 -18.4%, #FF007A 112.98%);
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+}
+@media(max-width: 767px){
+    .background{
+        height: 100%;
+    }
+    .content{
+        max-width: 680px;
+    }
+    .content h1{
+        font-size: 24px;
+    }
+    .content__text p{
+        margin-top: 14px;
+    }
+    .content__form p{
+        display: grid;
+        grid-template-columns: 4fr;
+        grid-gap: 20px;
+        color: white;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+    }
+    .content button{
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        margin-top: 50px;
+    }
+}

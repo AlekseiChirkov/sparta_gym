@@ -164,7 +164,7 @@ body {
     flex-direction: row;
     align-items: center;
     position: relative;
-    background: url('img/Gallery/desription.png');
+    background: url("img/Gallery/desription.decf774a425a.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -566,7 +566,7 @@ body {
     padding: 100px 0;
     text-align: center;
     position: relative;
-    background: url('img/Gallery/services.png');
+    background: url("img/Gallery/services.b5d6c30a9044.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
@@ -932,7 +932,7 @@ body {
 }
 .news{
     padding: 100px 0;
-    background: url('img/Gallery/gallerybg.png');
+    background: url("img/Gallery/gallerybg.7faf590413ad.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;

@@ -9,31 +9,40 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
-        <div class="items">
-            <img class="logo" src="{% static 'api/img/Logos/WS@72x-8.png' %}" alt="logo">
-            <nav class="navbar">
-                <div class="wrapper">
-                    <input type="checkbox" id="check-menu">
-                    <label for="check-menu" class="check-label">Меню</label>
-                    <nav class="main-menu" id="menu">
-                        <a href="#">Главная</a>
-                        <a href="#">Профиль</a>
-                        <a href="#gallery">Галерея</a>
-                        <a href="#contacts">Контакты</a>
-                        <a href="#">Магазин</a>
-                        <a href="#">Акции</a>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header">
+                <div class="header__body">
+                    <a href="#" class="header__logo">
+                        <img id="logo" src="{% static 'api/img/Logos/WS@72x-8.png' %}">
+                    </a>
+                    <div class="header__burger">
+                        <span></span>
+                    </div>
+                    <nav class="header__menu">
+                        <ul class="header__list">
+                            <li>
+                                <a href="#" class="header__link">Главная</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header__link">Профиль</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header__link">Галерея</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header__link">Контакты</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header__link">Магазин</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header__link">Акции</a>
+                            </li>
+                        </ul>
                     </nav>
                 </div>
-                <ul class="nav-items" id="mobile-menu">
-                    <li><a href="">Главная</a></li>
-                    <li><a href="">Профиль</a></li>
-                    <li><a href="#gallery">Галерея</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
-                    <li><a href="">Магазин</a></li>
-                    <li><a href="">Акции</a></li>
-                </ul>
-            </nav>
+            </div>
         </div>
     </div>
 
@@ -319,18 +328,12 @@
 
 
 
-
+    <script src="{% static 'api/jquery/jQuery.min.js' %}"></script>
+    <script src="{% static 'api/signup.js' %}"></script>
     <script src="{% static 'api/script.js'%}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!-- <script type="text/javascript">
-        window.onclick = () =>{
-            const check = document.getElementById('check-menu');
-            if(check.checked === true) check.checked = false;
-            else check.checked = true;
-        }
-    </script> -->
 </body>
 </html>
