@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['208.68.36.62', 'sparta-gym.com.kg']
+ALLOWED_HOSTS = ['64.225.125.96', 'sparta-gym.com.kg']
 
 
 # Application definition
