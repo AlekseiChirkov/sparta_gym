@@ -91,22 +91,22 @@ WSGI_APPLICATION = 'sparta.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DEPLOY = False
-if DEPLOY:
-    DATABASES = {
-        'default': dj_database_url.config(default=config('DATABASE_URL'))
+# DEPLOY = False
+# if DEPLOY:
+#     DATABASES = {
+#         'default': dj_database_url.config(default=config('DATABASE_URL'))
+#     }
+# else:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'spartadb',  # config('DB_NAME'),
+        'USER': 'alex',  # config('DB_USER'),
+        'PASSWORD': 'Aleksissanchez98',  # config('DB_PASS'),
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'spartadb',  # config('DB_NAME'),
-            'USER': 'alex',  # config('DB_USER'),
-            'PASSWORD': 'Aleksissanchez98',  # config('DB_PASS'),
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
-    }
+}
 
 # Django Rest Framework
 
