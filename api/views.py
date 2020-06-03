@@ -21,7 +21,7 @@ from .forms import *
 
 
 def home(request):
-    posts = Post.objects.order_by('date')[:4]
+    posts = Post.objects.order_by('date')[:6]
     return render(request, 'api/home.html', {'posts': posts})
 
 

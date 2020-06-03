@@ -156,11 +156,11 @@ body {
 
 
 .description{
-    padding: 200px 0;
+    padding: 200px 15% 200px 5%;
     font-family: 'Lato', sans-serif;
     font-size: 24px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: row;
     align-items: center;
     position: relative;
@@ -169,9 +169,6 @@ body {
     background-position: center center;
     background-size: cover;
     background-color: rgba(0,0,0,.9);
-}
-.description-content{
-    width: 55%;
 }
 .description h1{
     color: #12C2E9;
@@ -182,7 +179,7 @@ body {
     display: flex;
     align-items: center;
 }
-.description-content p{
+.description p{
     color: #FFFFFF;
     font-family: 'Lato', sans-serif;
     font-style: normal;
@@ -192,26 +189,48 @@ body {
     display: flex;
     align-items: center;
     margin-top: 5%;
+    width: 60%;
+    padding: 0;
 }
-.description-content button{
+.description form{
+    display: flex;
+}
+.description button{
     width: 223px;
     height: 50px;
     border: none;
     border-radius: 10px;
     background: linear-gradient(105.17deg, #FF2E00 -18.4%, #FF007A 112.98%);
     color: #fff;
-    margin-top: 5%;
     font-family: 'Lato', sans-serif;
 }
 .description-logo img{
-    width: 336px;
+    width: 406px;
     height: 413px;
     top: 194px;
 }
-@media (max-width: 1200px) {
+@media screen and (max-width: 1680px){
     .description{
-        flex-direction: column;
+        padding: 200px 0;
+        margin: 0;
+    }
+    .description h1{
+        width: 100%;
         text-align: center;
+        justify-content: center;
+    }
+    .description p{
+        margin: 100px auto 0 auto;
+        width: 90%;
+        text-align: center;
+    }
+    .description button{
+        margin: 50px auto 0 auto;
+    }
+    .description-content{
+        width: 90%;
+        padding: 0;
+        margin: 0 auto;
     }
     .description-logo{
         display: none;
@@ -283,7 +302,7 @@ body {
     top: 62px;
     background: #696969;
 }
-@media screen and (max-width: 1600px){
+@media screen and (max-width: 1680px){
     .about-us{
         flex-direction: column;
         align-items: center;
@@ -301,16 +320,19 @@ body {
         align-content: center;
     }
     .left h5{
-        font-size: 200%;
+        font-size: 24px;
         justify-content: space-around;
     }
     .left h1{
-        font-size: 300%;
+        font-size: 36px;
     }
     .left p{
-        font-size: 200%;
+        font-size: 20px;
     }
 }
+
+
+
 .about-coach{
     justify-content: center;
     position: relative;
@@ -414,13 +436,13 @@ body {
     z-index: 150;
     transition: all .5s;
 }
-@media(max-width: 1000px){
+@media(max-width: 1680px){
     .h1 h5{
-        font-size: 150%;
+        font-size: 24px;
     }
     .h1 h1{
-        font-size: 250%;
-        margin-top: 50px;
+        font-size: 36px;
+        margin-top: 20px;
     }
     .slide1{
         height: 300px;
@@ -428,43 +450,43 @@ body {
         position: absolute;
         transform: translateX(0px) scale(1.5);
         z-index: 100;
-        border: 2px solid red;
+        border: 2px solid #ff5353;
         transition: all .5s;
     }
     .slide2{
         height: 300px;
         width: 200px;
         position: absolute;
-        transform: translateX(-100px) scale(1.2);
+        transform: translateX(-150px) scale(1.2);
         z-index: 90;
-        border: 2px solid red;
+        border: 2px solid #ff5353;
         transition: all .5s;
     }
     .slide3{
         height: 300px;
         width: 200px;
         position: absolute;
-        transform: translateX(100px) scale(1.2);
+        transform: translateX(150px) scale(1.2);
         z-index: 90;
-        border: 2px solid red;
+        border: 2px solid #ff5353;
         transition: all .5s;
     }
     .slide4{
         height: 300px;
         width: 200px;
         position: absolute;
-        transform: translateX(-200px) scale(1);
+        transform: translateX(-250px) scale(1);
         z-index: 80;
-        border: 2px solid red;
+        border: 2px solid #ff5353;
         transition: all .5s;
     }
     .slide5{
         height: 300px;
         width: 200px;
         position: absolute;
-        transform: translateX(200px) scale(1);
+        transform: translateX(250px) scale(1);
         z-index: 80;
-        border: 2px solid red;
+        border: 2px solid #ff5353;
         transition: all .5s;
     }
     .slide1:hover{
@@ -496,29 +518,28 @@ body {
 #next{
     height: 30px;
     width: 100px;
-    border: 2px solid red;
     font-family: 'Lato', sans-serif;
     font-size: 16px;
-    color: red;
+    color: #fff;
     text-align: center;
     line-height: 30px;
     left: 510px;
     top: 100px;
     margin-top: 400px;
 }
-@media(max-width: 1000px){
+@media(max-width: 1680px){
     #next{
-        height: 60px;
+        height: 50px;
         width: 200px;
-        border: 2px solid red;
         font-family: 'Lato', sans-serif;
-        font-size: 200%;
-        color: red;
+        font-size: 24px;
+        color: #fff;
         text-align: center;
         line-height: 50px;
         left: 510px;
         top: 100px;
         margin-top: 450px;
+        background-color: #ff5353;
     }
 }
 #next:hover{
@@ -552,15 +573,23 @@ body {
     margin-top: 20px;
     position: relative;
 }
-@media(max-width: 1000px){
+@media(max-width: 1680px){
+    .coach-description{
+        padding: 0;
+        width: 100%;
+    }
     .coach-description h1{
-        font-size: 300%;
+        font-size: 36px;
     }
     .coach-description p{
-        font-size: 200%;
-        margin-top: 100px;
+        font-size: 24px;
+        margin: 20px auto;
+        width: 80%;
     }
 }
+
+
+
 .subscription{
     width: 100%;
     padding: 100px 0;
@@ -678,12 +707,12 @@ body {
     letter-spacing: 0.6px;
     color: #FEFEFE;
 }
-@media(max-width: 1000px){
+@media(max-width: 1680px){
     .subscription-head h4{
-        font-size: 200%;
+        font-size: 24px;
     }
     .subscription-head h1{
-        font-size: 300%;
+        font-size: 36px;
     }
     .subscription-types{
         flex-direction: column;
@@ -701,20 +730,24 @@ body {
         width: 80%;
     }
     .subscription-type1 h3{
-        font-size: 200%;
+        font-size: 28px;
     }
     .subscription-type2 h3{
-        font-size: 200%;
+        font-size: 28px;
         margin-top: 50px;
     }
     .subscription-type3 h3{
-        font-size: 200%;
+        font-size: 28px;
         margin-top: 50px;
     }
     .subscription-types p{
-        font-size: 180%
+        font-size: 24px;
     }
 }
+
+
+
+
 .gallery{
     width: 100%;
     position: relative;
@@ -739,8 +772,8 @@ body {
 .gallery-img{
     justify-content: space-around;
     position: relative;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
 }
 .gallery-img img{
@@ -749,13 +782,19 @@ body {
     border: 5px solid #ED213A;
     margin-top: 50px;
 }
-@media screen and (max-width: 1400px){
+@media screen and (max-width: 1680px){
+    .gallery-img{
+        grid-template-columns: 1fr 1fr;
+    }
+    .gallery-img img{
+        margin: 20px auto;
+    }
     .gallery-img img:hover{
         transform: scale(1.5);
         transition: all .7s;
     }
 }
-@media(max-width: 1000px){
+@media screen and (max-width: 768px){
     .gallery-img{
         flex-direction: column;
         align-items: center;
@@ -769,6 +808,10 @@ body {
         font-size: 200%;
     }
 }
+
+
+
+
 .price{
     width: 100%;
     padding: 100px 0;
@@ -808,7 +851,8 @@ body {
 }
 .subs{
     border: solid 5px #ED213A;
-    width: 20%;
+    width: 400px;
+    margin: 20px auto;
 }
 .subs h1{
     font-family: 'Lato', sans-serif;
@@ -839,68 +883,6 @@ body {
     justify-content:center;
     margin-top: 30px;
 }
-@media(max-width: 1000px){
-    .price-h h4{
-        font-size: 200%;
-    }
-    .price-h h2{
-        font-size: 300%;
-    }
-    .subs-title{
-        font-size: 150%;
-    }
-}
-.subscriptions-list1{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 50px;
-}
-.subscriptions-list2{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 50px;
-}
-.subscriptions-list3{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 50px;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-.subscriptions-list3 .subs{
-    width: 25%;
-}
-.subscriptions-list4{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 50px;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-.subscriptions-list4 .subs{
-    width: 25%;
-}
-@media(max-width: 1200px){
-    .subscriptions-list1{
-        flex-direction: column;
-        align-items: center;
-    }
-    .subscriptions-list2{
-        flex-direction: column;
-        align-items: center;
-    }
-    .subscriptions-list3{
-        flex-direction: column;
-        align-items: center;
-    }
-    .subscriptions-list4{
-        flex-direction: column;
-        align-items: center;
-    }
-    .subs{
-        margin: 10px 0;
-    }
-}
 .subs ol{
     font-family: 'Lato', sans-serif;
     font-style: normal;
@@ -913,23 +895,54 @@ body {
     padding-left: 25%;
     margin-top: 20px;
 }
-@media(max-width: 1000px){
-    li{
-        font-size: 200%;
-    }
-    .subscriptions-list1 .subs{
-        width: 60%;
-    }
-    .subscriptions-list2 .subs{
-        width: 60%;
-    }
-    .subscriptions-list3 .subs{
-        width: 85%;
-    }
-    .subscriptions-list4 .subs{
-        width: 85%;
+.a{
+    grid-area: a;
+}
+.b{
+    grid-area: b;
+}
+.c{
+    grid-area: c;
+}
+.d{
+    grid-area: d;
+}
+.e{
+    grid-area: e;
+}
+.f{
+    grid-area: f;
+}
+.g{
+    grid-area: g;
+}
+.h{
+    grid-area: h;
+}
+.j{
+    grid-area: j;
+}
+.k{
+    grid-area: k;
+}
+.subs-list{
+    display: grid;
+    grid-template-areas: 'a b c d'
+    'e f g h'
+    'i j k l';
+}
+@media screen and (max-width: 1680px){
+    .subs-list{
+        margin: 20px auto;
+        grid-template-areas: 'a b'
+        'c d'
+        'e f'
+        'g h'
+        'j k';
     }
 }
+
+
 .news{
     padding: 100px 0;
     background: url('img/Gallery/gallerybg.png');
@@ -988,12 +1001,12 @@ body {
     color: #FFFFFF;
     width: 95%;
 }
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1680px){
     .news h1{
         font-family: 'Lato', sans-serif;
         font-style: normal;
         font-weight: bold;
-        font-size: 60px;
+        font-size: 36px;
         line-height: 80%;
         align-items: center;
         text-align: center;
@@ -1017,7 +1030,7 @@ body {
         font-family: 'Lato', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 30px;
+        font-size: 24px;
         line-height: 200%;
         align-items: center;
         color: #F80759;
@@ -1027,7 +1040,7 @@ body {
         font-family: 'Lato', sans-serif;
         font-style: normal;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 133%;
         align-items: center;
         color: #FFFFFF;
@@ -1036,13 +1049,16 @@ body {
         font-family: 'Lato', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 30px;
+        font-size: 20px;
         line-height: 171%;
         align-items: center;
         color: #FFFFFF;
         margin: 0 auto;
     }
 }
+
+
+
 .contacts{
     width: 100%;
     padding: 100px 0;
@@ -1147,7 +1163,7 @@ body {
 }
 .info-3 img{
     width: 200px;
-    height: 250px;
+    height: 210px;
     margin-top: -30px;
 }
 .info-3 img:hover{
@@ -1201,13 +1217,17 @@ body {
     transform: rotate(0deg);
     text-shadow: 0px 0px 1px #131313, 0px 0px 1px #070707, 0px 0px 1px black, 0px 0px 1px black;
 }
-@media(max-width: 1000px){
+@media(max-width: 1680px){
     .contacts-info{
         flex-direction: column;
         align-items: center;
     }
+    .contacts-info{
+        margin: 50px 0 0 0;
+    }
     .info-1 p{
-        font-size: 150%;
+        font-size: 20px;
+        margin: 0;
     }
     .info-1 h3{
         font-size: 150%;
@@ -1217,30 +1237,32 @@ body {
         font-size: 200%;
     }
     .info-2 h3{
-        font-size: 120%;
+        font-size: 36px;
     }
     .info-2 p{
-        font-size: 120%;
+        font-size: 24px;
     }
     .info-2 a{
         font-size: 100%;
     }
     .info-3{
-        margin-top: 150px;
+        margin-top: 100px;
     }
     .con h4{
-        font-size: 300%;
+        font-size: 36px;
     }
     .con h1{
-        font-size: 200%;
+        font-size: 28px;
     }
     .con p{
-        font-size: 200%;
+        font-size: 20px;
+        width: 80%;
+        margin: 50px auto;
     }
     .con button{
-        font-size: 200%;
-        width: 350px;
-        height: 150px;
-        margin-left: 5%;
+        margin: 0;
+        font-size: 20px;
+        width: 200px;
+        height: 75px;
     }
 }
