@@ -1,8 +1,12 @@
 function myFunc(){
-    $(document).ready(function(){
-        flag=1;
+   $(document).ready(function(){
+      $('.header__burger').
+      click(function(event){
+         $('.header__burger, .header__menu').toggleClass('active');
+         $('body').toggleClass('lock');
+         flag=1;
          $('#next').click(function(){
-           if(flag==0)
+            if(flag==0)
             {
                $('.slide1').css('z-index', '99');
                $('.slide2').css('z-index', '89');
@@ -72,6 +76,7 @@ function myFunc(){
                $('.slide4').css('transform', 'translateX(300px) scale(1)');
                flag=0;
             }
-        });
-    });
+         });
+      });
+   })
 }
