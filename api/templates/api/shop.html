@@ -1,0 +1,43 @@
+{% extends 'api/home.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'api/shop.css' %}">
+
+</head>
+<body>
+    <div class="row">
+		<div class="products">
+            {% for product in products %}
+                <div class="product">
+                    <img src="{{ product.imageURL }}" alt=""><br>
+                    {{ product.name }}<br>
+                    <button  class="btn btn-outline-secondary add-btn">В корзину</button>
+                    <a class="btn btn-outline-success" href="#">Обзор</a><br>
+                    <h4><strong>{{ product.price }} сом</strong></h4>
+                </div>
+            {% endfor %}
+		</div>
+<!--
+
+		<div class="product">
+
+        </div>
+
+		<div class="product">
+
+		</div>
+-->
+    </div>
+
+
+
+
+
+</body>
+</html>
+{% endblock %}

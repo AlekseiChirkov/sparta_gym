@@ -100,8 +100,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'spartadb',  # config('DB_NAME'),
-        'USER': 'alex',  # config('DB_USER'),
-        'PASSWORD': 'Aleksissanchez98',  # config('DB_PASS'),
+        'USER': 'postgres',  # config('DB_USER'),
+        'PASSWORD': 'Admin123',  # config('DB_PASS'),
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

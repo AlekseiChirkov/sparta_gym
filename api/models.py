@@ -1,32 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from datetime import datetime, timedelta
-
-
-class Subscription(models.Model):
-    subscription_type = models.CharField(max_length=64)
-    time = models.TimeField(default=None)
-    price = models.FloatField()
-
-    def __str__(self):
-        return self.subscription_type
-
-
-class ProductType(models.Model):
-    type_name = models.CharField(max_length=64)
-
-    def __str__(self):
-        return self.type_name
-
-
-class Product(models.Model):
-    name = models.CharField(max_length=64)
-    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE)
-    price = models.FloatField()
-    description = models.TextField(max_length=256, default=None)
-
-    def __str__(self):
-        return self.name
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 class MyUserManager(BaseUserManager):
@@ -83,38 +57,31 @@ class MyUser(AbstractBaseUser):
         return self.is_admin
 
 
-class UserSubscription(models.Model):
-    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    subscription_type = models.ForeignKey(Subscription, on_delete=models.CASCADE)
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(default=datetime.now()+timedelta(days=30))
+class ProductType(models.Model):
+    type_name = models.CharField(max_length=64)
 
     def __str__(self):
-        return str(self.subscription_type)
+        return self.type_name
 
 
-class PaymentProduct(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='products')
-    count = models.PositiveIntegerField(default=1)
-
-    def __str__(self):
-        return str(self.product)
-
-    def get_cost(self):
-        return self.product.price * self.count
-
-
-class Payment(models.Model):
-    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    is_it_open = models.BooleanField(default=True)
-    date = models.DateTimeField(auto_now_add=True)
-    products = models.ManyToManyField(PaymentProduct)
+class Product(models.Model):
+    name = models.CharField(max_length=64)
+    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE)
+    price = models.FloatField()
+    description = models.TextField(max_length=256, default=None)
+    image = models.ImageField(upload_to="products")
+    date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.user)
+        return self.name
 
-    def get_sum(self):
-        return sum(item.get_cost() for item in self.products.all())
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
 
 
 class Post(models.Model):
@@ -127,3 +94,42 @@ class Post(models.Model):
 
     def body(self):
         return self.text
+
+
+class Customer(models.Model):
+    user = models.OneToOneField(MyUser, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=64, null=True)
+    email = models.EmailField(null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Order(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
+    date_ordered = models.DateTimeField(auto_now_add=True)
+    complete = models.BooleanField(default=False, null=True, blank=True)
+    transaction_id = models.CharField(max_length=256, null=True)
+
+    def __str__(self):
+        return str(self.id)
+
+
+class OrderItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    quantity = models.IntegerField(default=0, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+
+class ShippingAddress(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    city = models.CharField(max_length=256, null=True)
+    state = models.CharField(max_length=256, null=True)
+    address = models.CharField(max_length=256, null=True)
+    zip_code = models.CharField(max_length=64, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.address

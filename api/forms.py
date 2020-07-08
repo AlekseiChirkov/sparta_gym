@@ -90,11 +90,3 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ()
-
-
-# class SignupForm(UserCreationForm):
-#     email = forms.EmailField(max_length=200)
-#
-#     class Meta:
-#         model = MyUser
-#         fields = ('username', 'email', 'password1', 'password2')
