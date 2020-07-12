@@ -1,0 +1,24 @@
+{% extends 'api/registration.html' %}
+{% load static %}
+{% block content %}
+<div class="content">
+  <div class="content__container" id="signup">
+    <img class="signup_logo" src="{% static 'api/img/Logos/GS@72x-8.png' %}" alt="">
+    <h1 class="welcome">Добро пожаловать в <br> здоровый образ жизни!</h1>
+    <h2 class="signup">Вход</h2>
+    <form action="" method="post" class="signup__form">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Имя пользователя">
+      <input type="password" name="password" placeholder="Пароль">
+      <button type="submit">Войти</button>
+      <h3 class="account">Нет аккаунта?</h3>
+      <a href="{% url 'signup' %}" data-toggle="tab" class="account_link">Регистрация</a>
+      <div class="conditions">
+        <p>Продолжая, Вы принимаете наши<br>
+          <a href="" class="conditions_link">Условия конфиденциальности</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -8,10 +8,10 @@ from . models import *
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
         fields, plus a repeated password."""
-    email = forms.CharField(label='Email', widget=forms.EmailInput)
-    username = forms.CharField(label='Username', widget=forms.TextInput)
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput)
+    email = forms.CharField(widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Имя пользователя'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Подтверждение пароля'}))
 
     class Meta:
         model = MyUser
@@ -44,6 +44,38 @@ class UserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class UserLoginForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = MyUser
+        fields = ('username', 'password')
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        try:
+            match = MyUser.objects.get(email=email)
+        except MyUser.DoesNotExist:
+            return email
+        raise forms.ValidationError('This email does not exist.')
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        try:
+            match = MyUser.objects.get(username=username)
+        except MyUser.DoesNotExist:
+            return username
+        raise forms.ValidationError('This username or password does not exist.')
+
+    def clean_password(self):
+        password = self.cleaned_data["password"]
+        try:
+            match = MyUser.objects.get(password=password)
+        except MyUser.DoesNotExist:
+            return password
+        raise forms.ValidationError('Username or password does not exist.')
 
 
 class UserChangeForm(forms.ModelForm):
@@ -90,11 +122,3 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ()
-
-
-# class SignupForm(UserCreationForm):
-#     email = forms.EmailField(max_length=200)
-#
-#     class Meta:
-#         model = MyUser
-#         fields = ('username', 'email', 'password1', 'password2')

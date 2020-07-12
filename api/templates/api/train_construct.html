@@ -1,48 +1,17 @@
-<!DOCTYPE html>
+{% extends 'api/home.html' %}
+{% block content %}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'api/train_construct.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Конструктор программы для тренировок</title>
 </head>
 <body>
-    <div class="header">
-        <div class="items">
-            <img class="logo" src="{% static 'api/img/Logos/WS@72x-8.png' %}" alt="logo">
-            <nav class="navbar">
-                <div class="wrapper">
-                    <input type="checkbox" id="check-menu">
-                    <label for="check-menu" class="check-label">Меню</label>
-                    <nav class="main-menu" id="menu">
-                        <a href="../">Главная</a>
-                        <a href="#">Профиль</a>
-                        <a href="#gallery">Галерея</a>
-                        <a href="#contacts">Контакты</a>
-                        <a href="#">Магазин</a>
-                        <a href="#">Акции</a>
-                    </nav>
-                </div>
-                <ul class="nav-items">
-                    <li><a href="../">Главная</a></li>
-                    <li><a href="">Профиль</a></li>
-                    <li><a href="#gallery">Галерея</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
-                    <li><a href="">Магазин</a></li>
-                    <li><a href="">Акции</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-
-
-    <div class="construct">
-        <div class="container">
-           <h1>Данный раздел находится в стадии разработки... <br>
-               Приносим свои извинения.</h1>
-        </div>
-    </div>
 </body>
 </html>
+{% endblock %}

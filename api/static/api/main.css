@@ -7,7 +7,7 @@
     font-size: 20px;
 }
 body {
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 
@@ -73,9 +73,14 @@ body {
 .header__link:hover{
     color: red;
 }
-@media(max-width: 767px){
+.header__link.active{
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+}
+@media(max-width: 768px){
     body.lock{
-        overflow: hidden; 
+        overflow: hidden;
     }
     .header__body{
         height: 100px;
@@ -249,7 +254,7 @@ body {
     }
     .description p{
         width: 80%;
-        margin: 25px auto 0 auto;   
+        margin: 25px auto 0 auto;
     }
     .description button{
         margin: 10px auto 50px auto;
@@ -553,10 +558,6 @@ body {
     .slider{
         margin: 100px auto;
     }
-    .slide1{
-        width: 50%;
-        height: 50%;
-    }
     .slide2{
         display: none;
     }
@@ -581,6 +582,7 @@ body {
     left: 510px;
     top: 100px;
     margin-top: 400px;
+    border: solid 2px red;
 }
 @media(max-width: 1680px){
     #next{
@@ -600,6 +602,7 @@ body {
 @media screen and (max-width: 768px){
     #next{
         margin-top: 350px;
+        display: none;
     }
 }
 #next:hover{
@@ -650,6 +653,7 @@ body {
 @media screen and (max-width: 768px){
     .coach-description{
         width: 80%;
+        margin-top: 60%;
     }
     .coach-description p{
         font-size: 20px;
@@ -1436,4 +1440,3 @@ body {
         font-size: 18px;
     }
 }
-

@@ -23,19 +23,19 @@
                     <nav class="header__menu">
                         <ul class="header__list">
                             <li>
-                                <a href="#" class="header__link">Главная</a>
+                                <a href="/" class="header__link active">Главная</a>
                             </li>
                             <li>
-                                <a href="#" class="header__link">Профиль</a>
+                                <a href="{% url 'profile' %}" class="header__link">Профиль</a>
                             </li>
                             <li>
-                                <a href="#" class="header__link">Галерея</a>
+                                <a href="/#gallery" class="header__link">Галерея</a>
                             </li>
                             <li>
-                                <a href="#" class="header__link">Контакты</a>
+                                <a href="/#contacts" class="header__link">Контакты</a>
                             </li>
                             <li>
-                                <a href="#" class="header__link">Магазин</a>
+                                <a href="{% url 'shop' %}" class="header__link">Магазин</a>
                             </li>
                             <li>
                                 <a href="#" class="header__link">Акции</a>
@@ -48,7 +48,7 @@
     </div>
 
 
-    
+    {% block content %}
     <div class="description">
         <div class="description-content">
             <h1>СПАРТА -<br>СПОРТ ВЫСШЕЙ КАТЕГОРИИ!</h1>
@@ -146,7 +146,7 @@
         </div>
     </div>
 
-    
+
 
     <div class="gallery" id="gallery">
        <div class="gallery-h2">
@@ -317,12 +317,12 @@
             </div>
         </div>
     </div>
-
+    {% endblock %}
 
 
 
     <script src="{% static 'api/jquery/jQuery.min.js' %}"></script>
-    <script src="{% static 'api/signup.js' %}"></script>
+    <script src="{% static 'api/header.js' %}"></script>
     <script src="{% static 'api/script.js'%}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

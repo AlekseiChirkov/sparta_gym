@@ -6,11 +6,7 @@ from .models import *
 
 
 admin.site.register(MyUser, UserAdmin)
-admin.site.unregister(Group)
 admin.site.register(ProductType)
 admin.site.register(Product)
-admin.site.register(Subscription)
-admin.site.register(UserSubscription)
-admin.site.register(Payment)
-admin.site.register(PaymentProduct)
 admin.site.register(Post)
+admin.site.unregister(Group)

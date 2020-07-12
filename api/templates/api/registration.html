@@ -9,6 +9,38 @@
     <title>Registration</title>
 </head>
 <body>
+    <div class="main_wrapper">
+      <div class="signup_container">
+        <div class="signup_header__menu">
+          <ul class="signup_header__list left">
+            <li>
+              <a href="/" class="signup_header__link">Главная</a>
+            </li>
+            <li>
+              <a href="{% url 'profile' %}" class="signup_header__link">Профиль</a>
+            </li>
+            <li>
+              <a href="/#gallery" class="signup_header__link">Галерея</a>
+            </li>
+            <li>
+          </ul>
+
+          <ul class="signup_header__list right">
+            <li>
+              <a href="/#contacts" class="signup_header__link">Контакты</a>
+            </li>
+            <li>
+              <a href="{% url 'shop' %}" class="signup_header__link">Магазин</a>
+            </li>
+            <li>
+              <a href="" class="signup_header__link">Акции</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
     <div class="wrapper">
         <div class="container">
             <div class="header">
@@ -22,22 +54,22 @@
                     <nav class="header__menu">
                         <ul class="header__list">
                             <li>
-                                <a href="#" class="header__link">Главная</a>
+                                <a href="/" class="header__link">Главная</a>
                             </li>
                             <li>
-                                <a href="#" class="header__link">Профиль</a>
+                                <a href="{% url 'profile' %}" class="header__link">Профиль</a>
                             </li>
                             <li>
-                                <a href="#" class="header__link">Галерея</a>
+                                <a href="/#gallery" class="header__link">Галерея</a>
                             </li>
                             <li>
-                                <a href="#" class="header__link">Контакты</a>
+                                <a href="/#contacts" class="header__link">Контакты</a>
                             </li>
                             <li>
-                                <a href="#" class="header__link">Магазин</a>
+                                <a href="{% url 'shop' %}" class="header__link">Магазин</a>
                             </li>
                             <li>
-                                <a href="#" class="header__link">Акции</a>
+                                <a href="" class="header__link">Акции</a>
                             </li>
                         </ul>
                     </nav>
@@ -45,31 +77,42 @@
             </div>
         </div>
     </div>
-    
-    
-    <div class="background">
-        <div class="content">
-            <div class="content__text">
-                <h1>Уже собрались начать?<br>
-                Тогда регистрируйтесь и вперед, покорять новые вершины!</h1>
-                <p>ВНИМАНИЕ! На данный момент личный кабинет в разработке, зарегистрируйтесь, что бы получать все новости о нас на почту и быть первым, кто сможет воспользоваться нашей новейшей разработкой: Полностью автоматизированное посещение тренировок!</p>
-            </div>
-            <form action="" method="post" class="content__form">
-                {% if messages %}
-                    {% for message in messages %}
-                    <p class="{{ message.tags }}">{{message}}</p>
-                    {% endfor %}
-                {% endif %}
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Регистрация</button>
-            </form>
-        </div>
+
+
+    {% block content %}
+    <div class="content">
+      <div class="content__container" id="signup">
+        <img class="signup_logo" src="{% static 'api/img/Logos/GS@72x-8.png' %}" alt="">
+        <h1 class="welcome">Добро пожаловать в <br> здоровый образ жизни!</h1>
+        <h2 class="signup">Регистрация</h2>
+        <form action="" method="post" class="signup__form">
+          {% if messages %}
+              {% for message in messages %}
+              <p class="{{ message.tags }}">{{message}}</p>
+              {% endfor %}
+          {% endif %}
+          {% csrf_token %}
+          {{ signup.email }} <br>
+          {{ signup.username }} <br>
+          {{ signup.password1 }} <br>
+          {{ signup.password2}} <br>
+          <button type="submit">Зарегистрироваться</button>
+          <h3 class="account">Уже есть аккаунт?</h3>
+          <a href="{% url 'login' %}" data-toggle="tab" class="account_link">Войти</a>
+          <div class="conditions">
+            <p>Продолжая, Вы принимаете наши<br>
+              <a href="" class="conditions_link">Условия конфиденциальности</a>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
+    {% endblock %}
+
 
 
 
     <script src="{% static 'api/jquery/jQuery.min.js' %}"></script>
-    <script src="{% static 'api/signup.js' %}"></script>
+    <script src="{% static 'api/header.js' %}"></script>
 </body>
 </html>
