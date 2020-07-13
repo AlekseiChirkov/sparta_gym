@@ -7,7 +7,7 @@ body{
 }
 
 .signup_container{
-  width: 100;
+  width: 100%;
   padding: 20px 0 0 0;
 }
 .signup_header__menu{
@@ -29,6 +29,7 @@ body{
 .signup_header__list{
   display: flex;
   list-style: none;
+  padding: 0;
 }
 .signup_header__list.left{
   background: none;
@@ -214,4 +215,172 @@ body{
 
 .content{
   height: 1000px;
+}
+.filter_container{
+  display: flex;
+  width: 80%;
+  margin: 30px auto;
+}
+.filters{
+  margin: 0 15px;
+  height: 50px;
+  border: solid white 1px;
+  border-radius: 8px;
+  background-color: #fff;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 29px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #FF007A;
+}
+.filters:hover{
+  cursor: pointer;
+}
+.filter{
+  width: 400px;
+  margin: 0 15px;
+  height: 50px;
+  border: solid white 1px;
+  border-radius: 8px;
+  background-color: #fff;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 29px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #FF007A;
+}
+.filter img{
+  margin: 7px 12px 0 0;
+  height: 12px;
+  width: 12px;
+  float: right;
+}
+.sort{
+  width: 200px;
+}
+.search{
+  border: none;
+  width: 850px;
+}
+.search input{
+  width: 100%;
+  text-align: right;
+}
+.stocks{
+  width: 200px;
+}
+.dropbtn:hover, .dropbtn:focus{
+  background-color: #2980B9;
+}
+.dropdown{
+  position: relative;
+  display: inline-block;
+}
+.dropdown button{
+  width: 400px;
+  margin: 0 15px;
+  height: 50px;
+  border: solid white 1px;
+  border-radius: 8px;
+  background-color: #fff;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 29px;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #FF007A;
+}
+.drop_btn{
+  padding: 0 0 0 70px;
+}
+.drop_list{
+  display: none;
+  z-index: 1;
+  background-color: #fff;
+  height: 510px;
+  width: 400px;
+  margin: 0 auto;
+  padding: 0 0 0 20px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.drop_list a{
+  margin: 0 0 18px 0;
+  text-decoration: none;
+  display: block;
+  font-family: 'Lato' sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #707070;
+}
+.drop_list a:hover{
+  color: #707070;
+  text-decoration: none
+}
+@keyframes shake {
+  /* 10%, 90% {
+    transform: translate3d(0, 1px, 0);
+  }
+  20%, 80% {
+    transform: translate3d(0, -2px, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(0, 4px, 0);
+  }
+  40%, 60% {
+    transform: translate3d(0, -4px, 0);
+  } */
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@keyframes drop{
+  from{
+    height: 0;
+    opacity: 0;
+  }
+  to{
+    height: 510px;
+    opacity: 1
+  }
+}
+.show{
+  display: block;
+  animation-name: drop;
+  animation-duration: 2s;
+}
+.show a:hover{
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+.border{
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
 }

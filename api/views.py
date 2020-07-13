@@ -1,23 +1,21 @@
-from django.http import Http404, HttpResponseRedirect
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.sites.shortcuts import get_current_site
-from django.urls import reverse
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
-from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.views.decorators.csrf import csrf_protect
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.exceptions import ParseError
 from rest_framework.permissions import IsAuthenticated
 from rest_auth.registration.views import RegisterView
 
-from .serializers import *
+from .tokens import account_activation_token
 from .forms import *
 
 
@@ -53,6 +51,7 @@ def signup_form(request):
     return render(request, 'api/registration.html', {'signup': signup})
 
 
+@csrf_protect
 def login_form(request):
     if request.method == 'POST':
         username = request.POST.get('username')
