@@ -1,0 +1,9 @@
+{% autoescape off %}
+Hi {{ user.username }},
+Please click on the link to confirm your registration.
+==========
+Здравствуйте {{ user.username }}
+Пожалуйста, кликните на ссылку чтобы подтвердить регистрацию.
+
+http://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}
+{% endautoescape %}

@@ -23,26 +23,33 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'cyjxoy#%df#@02xd3$75&-p=f6!q&gqstx#+8t)eis0ey@+jxg' # config('SECRET_KEY')
+SECRET_KEY = 'cyjxoy#%df#@02xd3$75&-p=f6!q&gqstx#+8t)eis0ey@+jxg'  # config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['165.227.54.88', 'sparta-gym.com.kg']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'api.apps.ApiConfig',
+    # apps
+    'users.apps.ApiConfig',
+    'shop.apps.ShopConfig',
 
+    # django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # rest_framework
     'rest_framework',
     'rest_framework.authtoken',
+
+    # rest_auth
     'django.contrib.sites',
     'rest_auth',
     'rest_auth.registration',
@@ -51,19 +58,22 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
+
+    # filters
+    'django_filters',
 ]
 
 SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'sparta.urls'
@@ -119,7 +129,8 @@ REST_FRAMEWORK = {
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
-AUTH_USER_MODEL = 'api.MyUser'
+AUTH_USER_MODEL = 'users.MyUser'
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -140,15 +151,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'tektonikboy98@gmail.com'
-EMAIL_HOST_PASSWORD = 'byoteyhvlixreapg'
+EMAIL_HOST_USER = 'sparta.gym.com.kg@gmail.com'
+EMAIL_HOST_PASSWORD = 'pbjbvrwkzcftmsrh'
 EMAIL_PORT = 587
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Bishkek'
 

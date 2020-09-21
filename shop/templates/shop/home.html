@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpartaGYM</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'api/main.css' %}" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header">
+                <div class="header__body">
+                    <a href="#" class="header__logo">
+                        <img id="logo" src="{% static 'shop/img/Logos/VectorheaderLogo.png' %}">
+                    </a>
+                    <div class="header__burger">
+                        <span></span>
+                    </div>
+                    <nav class="header__menu">
+                        <ul class="header__list">
+                            <li>
+                                <a href="/" class="header__link active">Главная</a>
+                            </li>
+                            <li>
+                                <a href="/users/profile/" class="header__link">Профиль</a>
+                            </li>
+                            <li>
+                                <a href="/#gallery" class="header__link">Галерея</a>
+                            </li>
+                            <li>
+                                <a href="/#contacts" class="header__link">Контакты</a>
+                            </li>
+                            <li>
+                                <a href="/shop/" class="header__link">Магазин</a>
+                            </li>
+                            <li>
+                                <a href="#" class="header__link">Акции</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% block content %}
+    <div class="description">
+        <div class="description-content">
+            <h1>СПАРТА -<br>СПОРТ ВЫСШЕЙ КАТЕГОРИИ!</h1>
+            <p>Не хочешь прослыть слабаком на районе? Есть выход! Наш тренер сделает из тебя терминатора и ты сможешь надавать по щам любому местному гопнику. У нас есть все условия! Отличный зал, в котором очень комфортно заниматься. Советское железо, с которым приятно работать. Самый большой выбор спортивного питания в городе по очень приемлемым ценам, опытный тренер, все основные тренажеры, большая груша, душ с горячей водой. Тренажеры для всех групп мышц, кардио зона, все условия для трансформации из тощей веточки в несокрушимую машину! ЭТО SpartA!!! МЫ СДЕЛАЕМ ТЕБЯ СИЛЬНЫМ!!!</p>
+            <form action="/users/signup/"><button type="submit">Начать!</button></form>
+        </div>
+        <div class="description-logo">
+            <img src="{% static 'shop/img/Logos/GS@72x-8.png' %}" alt="">
+        </div>
+    </div>
+
+
+
+    <div class="about-us">
+        <div class="left">
+            <h5>О Sparta GYM</h5>
+            <h1>ДОБРО ПОЖАЛОВАТЬ В<br>ЗДОРОВЫЙ ОБРАЗ ЖИЗНИ!</h1>
+            <p>Наш зал SpartA GYM был основан в 2014 году, в качестве закрытого клуба "Только для своих". Сначала в зале не было ничего кроме двух шведских стенок. Затем постепенно стали появляться тренажеры, штанги, гантели и прочее. Многие люди, пришедшие в наш зал, добились поставленных целей! Зал создан не для выпендрёжа, а для результата, поэтому старый добрый зал всегда лучше любого фитнес клуба! В зале стоит советское оборудование - самое надежное оборудование, которое только видел свет. У нас всегда дружелюбная атмосфера, вам поможет и подскажет любой приходящий на тренировку, а тренер сумеет сделать из вас целеустремленного и бесстрашного человека!</p>
+        </div>
+        <div class="right">
+            <video controls src="../../static/shop/videos/sparta_promo.mp4"></video>
+        </div>
+    </div>
+
+
+
+    <div class="about-coach">
+        <div class="h1">
+            <h5>Знакомьтесь</h5>
+            <h1>НАШ ТРЕНЕР</h1>
+        </div>
+        <div class="coach">
+            <div class="slider">
+                <div class="slide1">
+                    <img src="{% static 'shop/img/Coach/7.JPG' %}" alt="" width="100%" height="100%">
+                </div>
+                <div class="slide2">
+                    <img src="{% static 'shop/img/Coach/2.jpg' %}" alt="" width="100%" height="100%">
+                </div>
+                <div class="slide3">
+                    <img src="{% static 'shop/img/Coach/3.jpg' %}" alt="" width="100%" height="100%">
+                </div>
+                <div class="slide4">
+                    <img src="{% static 'shop/img/Coach/4.jpg' %}" alt="" width="100%" height="100%">
+                </div>
+                <div class="slide5">
+                    <img src="{% static 'shop/img/Coach/1.jpg' %}" alt="" width="100%" height="100%">
+                </div>
+                <div id="next" onclick="myFunc()">
+                    ЛИСТАТЬ
+                </div>
+            </div>
+            <div class="coach-description">
+                <h1>ВЛАДИМИР</h1>
+                <p>Никто не разбирается в сфере бодибилдинга лучше нашего тренера. А образование по профессии и 20 лет опыта работы в этой сфере делают его одним из лучших тренеров в стране, если не самым лучшим! Родился Владимир в 1970 году. Он мечтал стать тренером и открыть собственный зал и он добился своей цели, так же как и вы сможете ее добиться, начав ходить на тренировки под его руководством. Владимир привел множество человек к успеху и красоте своего тела. И Вы не станете исключением!</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="subscription">
+        <div class="subscription-head">
+            <h4>Выберите</h4>
+            <h1>ПРОГРАММУ ТРЕНИРОВОК</h1>
+        </div>
+        <div class="subscription-types">
+            <div class="subscription-type1">
+                <h3>
+                Сброс веса<br>
+                <img src="{% static 'shop/img/Subscriptions/sbros.svg' %}" alt=""><br>
+                </h3>
+                <div class="drying">
+                    <p>Наши программы для сброса веса и сушки - самые лучшие и эффективные в городе! С их помощью вы сможете сбросить от 2 до 5 килограмм жира и просушить свое тело так, что будут видны все ваши кубики пресса!</p>
+                </div>
+            </div>
+            <div class="subscription-type2">
+                <h3>
+                Бодибилдинг<br>
+                <img src="{% static 'shop/img/Subscriptions/nabor.svg' %}" alt=""><br>
+                </h3>
+                <div class="building">
+                    <p>Наши программы по набору массы помогут вам построить тело вашей мечты, набрать сухую мышечную массу и стать настоящим терминатором!</p>
+                </div>
+            </div>
+            <div class="subscription-type3">
+                <h3>
+                Самостоятельные тренировки<br>
+                <img src="{% static 'shop/img/Subscriptions/svoya.svg' %}" alt=""><br>
+                </h3>
+                <div class="self">
+                    <p>У нас приветствуются самостоятельные тренировки, если у Вас есть свой план тренировок и развития Вашего тела, то смело покупайте абонемент с самостоятельными тренировками и вперед, за работу!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="gallery" id="gallery">
+       <div class="gallery-h2">
+           <h2>Галерея</h2>
+       </div>
+       <div class="gallery-img">
+           <img src="{% static 'shop/img/Gallery/4.JPG' %}">
+           <img src="{% static 'shop/img/Gallery/5.JPG' %}">
+           <img src="{% static 'shop/img/Gallery/6.JPG' %}">
+           <img src="{% static 'shop/img/Gallery/8.JPG' %}">
+       </div>
+    </div>
+
+
+
+    <div class="price">
+        <div class="price-h">
+            <h4>Прайслист</h4>
+            <h2>НАШИ ЦЕНЫ</h2>
+        </div>
+        <div class="subs-list">
+            <div class="subs a">
+                <h1>4000 сом/месяц</h1>
+                <div class="subs-title">Тренировки с тренером</div>
+                <ol start="1" class="privilege">
+                    <li>Безлимитные посещения</li>
+                    <li>Тренер всегда рядом</li>
+                    <li>Собственная программа</li>
+                    <li>Советы от тренера</li>
+                    <li>Свободное время посещения</li>
+                </ol>
+            </div>
+            <div class="subs b">
+                <h1>2500 сом/месяц</h1>
+                <div class="subs-title">Тренировки с тренером</div>
+                <ol>
+                    <li>12 тренировок</li>
+                    <li>Тренер всегда рядом</li>
+                    <li>Собственная программа</li>
+                    <li>Советы от тренера</li>
+                    <li>Свободное время посещения</li>
+                </ol>
+            </div>
+            <div class="subs c">
+                <h1>1900 сом/месяц</h1>
+                <div class="subs-title">Неделя с тренером</div>
+                <ol>
+                    <li>12 тренировок</li>
+                    <li>Собственная программа</li>
+                    <li>Неделя занятий по программе с тренером</li>
+                    <li>Советы от тренера</li>
+                    <li>Свободное время посещения</li>
+                </ol>
+            </div>
+            <div class="subs d">
+                <h1>1700 сом/месяц</h1>
+                <div class="subs-title">Неделя с тренером</div>
+                <ol>
+                    <li>12 тренировок</li>
+                    <li>Собственная программа</li>
+                    <li>Неделя занятий по программе с тренером</li>
+                    <li>Советы от тренера</li>
+                    <li>Посещение с 14:00 до 18:00</li>
+                </ol>
+            </div>
+            <div class="subs e">
+                <h1>1200 сом/месяц</h1>
+                <div class="subs-title">Самаостоятельные тренировки</div>
+                <ol>
+                    <li>12 тренировок</li>
+                    <li>Самостоятельные тренировки</li>
+                    <li>Свободное время посещения</li>
+                </ol>
+            </div>
+            <div class="subs f">
+                <h1>1000 сом/месяц</h1>
+                <div class="subs-title">Самостоятельные тренировки</div>
+                <ol>
+                    <li>12 тренировок</li>
+                    <li>Самостоятельные тренировки</li>
+                    <li>Время посещения с 14:00 до 18:00</li>
+                </ol>
+            </div>
+            <div class="subs g">
+                <h1>2000 сом/месяц</h1>
+                <div class="subs-title">Самостоятельные тренировки</div>
+                <ol>
+                    <li>Самостоятельные тренировки</li>
+                    <li>Свободное время посещения</li>
+                    <li>Неограниченное количество тренировок</li>
+                </ol>
+            </div>
+            <div class="subs h">
+                <h1>1600 сом/месяц</h1>
+                <div class="subs-title">Самостоятельные тренировки</div>
+                <ol>
+                    <li>Самостоятельные тренировки</li>
+                    <li>Время посещения с 14:00 до 18:00</li>
+                    <li>Неограниченное количество тренировок</li>
+                </ol>
+            </div>
+            <div class="subs j">
+                <h1>150 сом</h1>
+                <div class="subs-title">Одноразовая тренировка</div>
+                <ol>
+                    <li>Одно занятие</li>
+                    <li>Свободное время посещения</li>
+                    <li>Самостоятельная тренировка</li>
+                </ol>
+            </div>
+            <div class="subs k">
+                <h1>250 сом</h1>
+                <div class="subs-title">Одноразовая тренировка</div>
+                <ol>
+                    <li>Одно занятие</li>
+                    <li>Свободное время посещения</li>
+                    <li>Тренировка с тренером</li>
+                    <li>Советы от тренера</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="news">
+        <h1>Новости</h1>
+        <div class="posts">
+        {% for post in posts %}
+            <div class="post">
+                <h4>{{ post.title }}</h4>
+                <p class="text">{{ post.body }}</p>
+                <h2>{{ post.date }}</h2>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+
+
+    <div class="contacts" id="contacts">
+        <div class="con">
+            <h4>Контакты</h4>
+            <h1>+996 551 06 43 47</h1>
+            <p>Как впечатления? Понравилось? Тогда приходи к нам в зал и начни совершенствоваться!<br>Измени свою жизнь в лучшую сторону!</p>
+            <form action="/train-constructor"><button type="submit">Составить программу</button></form>
+        </div>
+        <div class="contacts-info">
+            <div class="info-1">
+                <p>Хотите знать больше о нас? Тогда подписывайтесь на наши соцсети!</p>
+                <h3>Следите за нами!</h3>
+                <ul class="socialIcons">
+                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li><a class="youtube" href="#"><i class="fa fa-youtube"></i></a></li>
+                </ul>
+            </div>
+            <div class="info-2">
+                <h3>Контакты</h3>
+                <p><a href="https://go.2gis.com/02g2c">Проспект Манаса 40  (пересечение с улицей Киевская)</a><br>
+                +996 551 06 43 47 <br>
+                <a href="">www.sparta-gym.com.kg</a></p>
+                <p id="email">sparta.gym.com.kg@gmail.com</p>
+            </div>
+            <div class="info-3">
+                <img src="{% static 'api/img/Logos/GS@72x-8.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+
+
+    <script src="{% static 'shop/jquery/jQuery.min.js' %}"></script>
+    <script src="{% static 'shop/header.js' %}"></script>
+    <script src="{% static 'shop/script.js'%}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

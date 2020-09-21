@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'shop/profile.css' %}">
+</head>
+<body>
+  <div class="main_wrapper">
+    <div class="signup_container">
+      <div class="signup_header__menu">
+        <ul class="signup_header__list left">
+          <li>
+            <a href="/" class="signup_header__link">Главная</a>
+          </li>
+          <li>
+            <a href="/profile" class="signup_header__link active_link">Профиль</a>
+          </li>
+          <li>
+            <a href="/#gallery" class="signup_header__link">Галерея</a>
+          </li>
+          <li>
+        </ul>
+        <img src="{% static 'shop/img/Logos/VectorheaderLogo.svg' %}" alt="" class="header_logo">
+        <ul class="signup_header__list right">
+          <li>
+            <a href="/#contacts" class="signup_header__link">Контакты</a>
+          </li>
+          <li>
+            <a href="/shop" class="signup_header__link">Магазин</a>
+          </li>
+          <li>
+            <a href="" class="signup_header__link">Акции</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper">
+      <div class="container">
+          <div class="header">
+              <div class="header__body">
+                  <a href="#" class="header__logo">
+                      <img id="logo" src="{% static 'shop/img/Logos/WS@72x-8.png' %}">
+                  </a>
+                  <div class="header__burger">
+                      <span></span>
+                  </div>
+                  <nav class="header__menu">
+                      <ul class="header__list">
+                          <li>
+                              <a href="/" class="header__link">Главная</a>
+                          </li>
+                          <li>
+                              <a href="/profile" class="header__link">Профиль</a>
+                          </li>
+                          <li>
+                              <a href="/#gallery" class="header__link">Галерея</a>
+                          </li>
+                          <li>
+                              <a href="/#contacts" class="header__link">Контакты</a>
+                          </li>
+                          <li>
+                              <a href="/shop" class="header__link">Магазин</a>
+                          </li>
+                          <li>
+                              <a href="#" class="header__link">Акции</a>
+                          </li>
+                      </ul>
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="content">
+    <div class="profile">
+      {% if user.profile.image %}
+        <img src="{{ user.profile.image.url }}" alt="">
+      {% else %}
+        <img src="" alt="Here must be your image, please upload it in your profile update">
+      {% endif %}
+      <div class="info">
+        <h3 class="name">{{ name }}</h3>
+        <h3 class="surname">{{ surname }}</h3>
+        <h3 class="age">{{ age }} лет</h3>
+      </div>
+    </div>
+    <div class="user_info">
+
+    </div>
+    <div class="subscription">
+
+    </div>
+  </div>
+</body>
+</html>
