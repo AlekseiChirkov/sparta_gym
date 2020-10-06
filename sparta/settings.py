@@ -23,12 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'cyjxoy#%df#@02xd3$75&-p=f6!q&gqstx#+8t)eis0ey@+jxg'  # config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+DEBUG = config('DEBUG', cast=bool, default=True)
 
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -109,11 +109,11 @@ WSGI_APPLICATION = 'sparta.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'spartadb',  # config('DB_NAME'),
-        'USER': 'alex',  # config('DB_USER'),
-        'PASSWORD': 'Aleksissanchez98',  # config('DB_PASS'),
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASS'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 

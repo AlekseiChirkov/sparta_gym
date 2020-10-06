@@ -6,9 +6,9 @@ from shop.models import Product, ProductType
 
 class ProductFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(
-        label='ЧТО ИЩЕМ?',
+        label='search',
         lookup_expr='icontains',
-        widget=forms.TextInput(attrs={'placeholder': 'ЧТО ИЩЕМ?(Название продукта)'})
+        widget=forms.TextInput(attrs={'placeholder': 'ЧТО ИЩЕМ? (Название продукта)'})
     )
     product_type = django_filters.ModelChoiceFilter(
         queryset=ProductType.objects.all(),

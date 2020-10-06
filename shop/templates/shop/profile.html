@@ -80,7 +80,7 @@
   <div class="content">
     <div class="profile">
       {% if user.profile.image %}
-        <img src="{{ user.profile.image.url }}" alt="">
+        <img src="{{ user.profile.image.url }}" alt="" class="avatar">
       {% else %}
         <img src="" alt="Here must be your image, please upload it in your profile update">
       {% endif %}
