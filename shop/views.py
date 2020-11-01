@@ -1,4 +1,7 @@
 import json
+import datetime
+
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
@@ -55,7 +58,7 @@ def cart(request):
         'order': order,
         'cart_items': cart_items
     }
-    return render(request, 'shop/cart.html', context)
+    return render(request, 'shop/profile.html', context)
 
 
 def update_item(request):

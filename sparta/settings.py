@@ -33,10 +33,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    # apps
-    'users.apps.ApiConfig',
-    'shop.apps.ShopConfig',
-
     # django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # apps
+    'users.apps.UsersConfig',
+    'shop.apps.ShopConfig',
 
     # rest_framework
     'rest_framework',

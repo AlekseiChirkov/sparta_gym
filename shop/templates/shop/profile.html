@@ -79,6 +79,7 @@
 
   <div class="content">
     <div class="profile">
+    {% if user.is_authenticated %}
       {% if user.profile.image %}
         <img src="{{ user.profile.image.url }}" alt="" class="avatar">
       {% else %}
@@ -89,6 +90,11 @@
         <h3 class="surname">{{ surname }}</h3>
         <h3 class="age">{{ age }} лет</h3>
       </div>
+    {% else %}
+        <div class="login-btn">
+            <a href="">Войти</a>
+        </div>
+    {% endif %}
     </div>
     <div class="user_info">
 
