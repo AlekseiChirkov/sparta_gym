@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap');
 body{
-  background-image: url('img/backgrounds/shopbg.png');
+  background-image: url("img/backgrounds/shopbg.49025848306b.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -261,9 +261,6 @@ ul li a:hover{
     font-weight: bold;
     text-align: center;
 }
-.logout-form{
-    margin: auto auto 20px auto;
-}
 .logout{
     width: 122px;
     height: 48px;
@@ -273,17 +270,6 @@ ul li a:hover{
     background: #FFFFFF;
     box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
-    border: none;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 29px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #FF2E00;
-    text-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
 }
 .logout a{
     font-family: 'Lato', sans-serif;

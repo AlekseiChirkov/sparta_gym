@@ -51,7 +51,7 @@ def login_form(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('users:profile')
+            return redirect('shop:cart')
         else:
             message = "Неверный логин или пароль."
             return render(request, 'shop/login.html', {'message': message})
@@ -75,19 +75,19 @@ def activate(request, uidb64, token):
         return HttpResponse('Ссылка не действительна!')
 
 
-@csrf_protect
-@login_required(login_url='users:login')
-def profile(request):
-    username = request.user.username
-    name = request.user.profile.name
-    surname = request.user.profile.surname
-    age = 0
-    if request.user.profile.birthday:
-        age = int(datetime.datetime.today().year) - int(request.user.profile.birthday.year)
-    context = {
-        'username': username,
-        'name': name,
-        'surname': surname,
-        'age': age,
-    }
-    return render(request, 'shop/templates/shop/profile.html', context)
+# @csrf_protect
+# @login_required(login_url='users:login')
+# def profile(request):
+#     username = request.user.username
+#     name = request.user.profile.name
+#     surname = request.user.profile.surname
+#     age = 0
+#     if request.user.profile.birthday:
+#         age = int(datetime.datetime.today().year) - int(request.user.profile.birthday.year)
+#     context = {
+#         'username': username,
+#         'name': name,
+#         'surname': surname,
+#         'age': age,
+#     }
+#     return render(request, '/shop/profile.html', context)

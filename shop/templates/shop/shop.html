@@ -37,7 +37,7 @@
             <a href="/" class="signup_header__link">Главная</a>
           </li>
           <li>
-            <a href="/users/profile" class="signup_header__link">Профиль</a>
+            <a href="/profile/cart/" class="signup_header__link">Профиль</a>
           </li>
           <li>
             <a href="/#gallery" class="signup_header__link">Галерея</a>
@@ -76,7 +76,7 @@
                               <a href="/" class="header__link">Главная</a>
                           </li>
                           <li>
-                              <a href="/users/profile" class="header__link">Профиль</a>
+                              <a href="/profile/cart/" class="header__link">Профиль</a>
                           </li>
                           <li>
                               <a href="/#gallery" class="header__link">Галерея</a>
@@ -104,7 +104,7 @@
         <button class="filters sort_btn" id="sort_btn" type="submit">Сортировать</button>
         {{ product_filter.form.name }}
         <div class="filters cart_btn" id="cart_btn">
-          <div class="cart"><a href="#">Корзина - {{ cart_items }}</a></div>
+          <div class="cart"><a href="/profile/cart/">Корзина - {{ cart_items }}</a></div>
           <img class="cart_icon" src="{% static 'shop/img/icons/cart.png' %}" alt="">
         </div>
       </div>
@@ -147,8 +147,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
-    <script src="{% static 'shop/shop.js' %}"></script>
     <script src="{% static 'shop/cart.js' %}"></script>
     <script src="{% static 'shop/header.js' %}"></script>
+    <script src="{% static 'shop/favorite.js' %}"></script>
 </body>
 </html>

@@ -7,6 +7,25 @@
   <title>Document</title>
   {% load static %}
   <link rel="stylesheet" href="{% static 'shop/profile.css' %}">
+  <script type="text/javascript">
+    var user = '{{request.user}}'
+
+    function getToken(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+          }
+        }
+        return cookieValue;
+      }
+    const csrftoken = getToken('csrftoken');
+  </script>
 </head>
 <body>
   <div class="main_wrapper">
@@ -17,7 +36,7 @@
             <a href="/" class="signup_header__link">Главная</a>
           </li>
           <li>
-            <a href="/profile" class="signup_header__link active_link">Профиль</a>
+            <a href="/profile/cart/" class="signup_header__link active_link">Профиль</a>
           </li>
           <li>
             <a href="/#gallery" class="signup_header__link">Галерея</a>
@@ -56,7 +75,7 @@
                               <a href="/" class="header__link">Главная</a>
                           </li>
                           <li>
-                              <a href="/profile" class="header__link">Профиль</a>
+                              <a href="/profile/cart/" class="header__link">Профиль</a>
                           </li>
                           <li>
                               <a href="/#gallery" class="header__link">Галерея</a>
@@ -85,23 +104,70 @@
       {% else %}
         <img src="" alt="Here must be your image, please upload it in your profile update">
       {% endif %}
-      <div class="info">
-        <h3 class="name">{{ name }}</h3>
-        <h3 class="surname">{{ surname }}</h3>
-        <h3 class="age">{{ age }} лет</h3>
-      </div>
+        <div class="user-info">
+        {{ name }} {{ surname }}<br>{{ age }} год(а)/лет
+        </div>
+        <form method="post" action="/accounts/logout/" class="logout-form">
+            {% csrf_token %}
+            <button class="logout">Выйти</button>
+        </form>
     {% else %}
+        <div class="login-requires">
+            Пожалуйста, войдите что-бы продолжить.
+        </div>
         <div class="login-btn">
             <a href="">Войти</a>
         </div>
     {% endif %}
     </div>
-    <div class="user_info">
 
-    </div>
     <div class="subscription">
 
     </div>
+
+    <div class="products-list">
+        <div class="products-head">Корзина</div>
+        <table class="cart">
+            <tr class="cart-row">
+                <th>Наименование товара</th>
+                <th>Цена</th>
+                <th>Кол-во</th>
+                <th>Сумма</th>
+            </tr>
+            {% for item in items %}
+            <tr class="products-row">
+                <th>{{ item.product.name }}</th>
+                <th>{{ item.product.price|floatformat:2}} сом</th>
+                <th class="quantity">
+                    <div class="quantity-item">{{ item.quantity }}</div>
+                    <div class="quantity-item quantity-arrows">
+                        <i data-product="{{ item.product.id }}" data-action="add" class="arrow up update_cart"></i>
+                        <i data-product="{{ item.product.id }}" data-action="remove" class="arrow down update_cart"></i>
+                    </div>
+                </th>
+                <th>{{ item.get_total|floatformat:2 }} сом</th>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="total-price">
+            <div class="total-items">Кол-во: {{ order.get_cart_items }}</div>
+            <div class="total-sum">Итого: {{ order.get_cart_total|floatformat:2 }} сом</div>
+            <div class="order-btn">Заказать</div>
+        </div>
+    </div>
   </div>
+
+    <script src="{% static 'shop/cart.js' %}"></script>
+    <script src="{% static 'shop/header.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 </body>
 </html>

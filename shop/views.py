@@ -42,7 +42,15 @@ def shop(request):
     return render(request, 'shop/shop.html', context)
 
 
+@csrf_protect
+@login_required(login_url='users:login')
 def cart(request):
+    username = request.user.username
+    name = request.user.profile.name
+    surname = request.user.profile.surname
+    age = 0
+    if request.user.profile.birthday:
+        age = int(datetime.datetime.today().year) - int(request.user.profile.birthday.year)
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -54,6 +62,10 @@ def cart(request):
         cart_items = order['get_cart_items']
 
     context = {
+        'username': username,
+        'name': name,
+        'surname': surname,
+        'age': age,
         'items': items,
         'order': order,
         'cart_items': cart_items

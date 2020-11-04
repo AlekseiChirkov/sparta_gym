@@ -10,7 +10,6 @@ app_name = 'users'
 urlpatterns = [
     path('signup/', views.signup_form, name='signup'),
     path('login/', views.login_form, name='login'),
-    path('profile/', views.profile, name='profile'),
 
 
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
