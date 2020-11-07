@@ -18,6 +18,7 @@ urlpatterns = [
     path('profile/cart/', views.cart, name='cart'),
     path('subscription-check/', views.subscription_check, name='subscription-check'),
     path('api/', include(router.urls)),
+    path('api/subscription-search/', views.SubscriptionSearchListAPIView.as_view(), name='sub-search'),
     path('update-item/', views.update_item, name='update-item'),
     path('training-programs/', views.train_constructor, name='train_constructor'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

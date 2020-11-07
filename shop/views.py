@@ -1,17 +1,18 @@
 import json
-import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
+from rest_framework.filters import SearchFilter
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.permissions import AllowAny
 
 from shop.filters import ProductFilter
 from shop.models import *
-from shop.serializers import SubscriptionSerializer
+from shop.serializers import SubscriptionSerializer, SubscriptionReadableSerializer
 
 
 def home(request):
@@ -148,3 +149,11 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.data)
+
+
+class SubscriptionSearchListAPIView(ListAPIView):
+    permission_classes = (AllowAny, )
+    queryset = Subscription.objects.all()
+    serializer_class = SubscriptionSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['user', 'visits', 'start_date', 'end_date']
