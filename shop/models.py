@@ -98,7 +98,7 @@ class Subscription(models.Model):
     user = models.ForeignKey('users.MyUser', on_delete=models.CASCADE, blank=True, null=True)
     start_date = models.DateField(auto_now_add=True)
     end_date = models.DateField(auto_now_add=True)
-    visits = models.IntegerField(default=12)
+    visits = models.PositiveIntegerField(default=12)
     is_active = models.BooleanField(default=True)
 
 

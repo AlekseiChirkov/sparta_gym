@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Subscription</title>
-</head>
-<body>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'shop/qr_css.css' %}" />
+    <title>Абонемент</title>
+  </head>
+  <body>
+    <div class="result-container" id="abonementScanResult">
+      <img src="{% static 'shop/img/loaders/loader.png' %}" class="abonement-loader" />
+    </div>
+    <script src="{% static 'shop/qr_js.js' %}"></script>
+  </body>
 </html>
