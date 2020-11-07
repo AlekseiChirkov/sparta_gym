@@ -11,13 +11,13 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+
 import django_heroku
 import dj_database_url
 from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -33,6 +33,9 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    # extra libs
+    'django_crontab',
+
     # django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -61,6 +64,10 @@ INSTALLED_APPS = [
 
     # filters
     'django_filters',
+]
+
+CRONJOBS = [
+    ('* * * * *', 'shop.cron.check_subscription_expired', '>> ~/Documents/Projects/SpartaGym/scheduled_job.log'),
 ]
 
 SITE_ID = 1
@@ -96,7 +103,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sparta.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -122,15 +128,20 @@ DATABASES = {
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-    )
+    ),
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.MultiPartParser',
+    ]
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
 AUTH_USER_MODEL = 'users.MyUser'
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -155,7 +166,6 @@ EMAIL_HOST_USER = 'sparta.gym.com.kg@gmail.com'
 EMAIL_HOST_PASSWORD = 'pbjbvrwkzcftmsrh'
 EMAIL_PORT = 587
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -168,7 +178,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

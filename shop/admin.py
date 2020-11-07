@@ -45,11 +45,19 @@ class ShippingAddressAdmin(admin.ModelAdmin):
         model = ShippingAddress
 
 
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in Subscription._meta.fields]
+
+    class Meta:
+        model = Subscription
+
+
 admin.site.register(ProductType, ProductTypeAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(ShippingAddress, ShippingAddressAdmin)
+admin.site.register(Subscription, SubscriptionAdmin)
 
 

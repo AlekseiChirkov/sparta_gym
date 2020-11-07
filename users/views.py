@@ -10,7 +10,11 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
+from rest_framework import viewsets, status
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 
+from .serializers import UserSerializer
 from .tokens import account_activation_token
 from .forms import *
 
@@ -74,6 +78,22 @@ def activate(request, uidb64, token):
     else:
         return HttpResponse('Ссылка не действительна!')
 
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = MyUser.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (AllowAny, )
+
+    def list(self, request, *args, **kwargs):
+        user = self.queryset.all()
+        serializer = self.serializer_class(user, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 # @csrf_protect
 # @login_required(login_url='users:login')

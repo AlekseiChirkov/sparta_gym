@@ -3,11 +3,15 @@ import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
+from rest_framework.response import Response
+from rest_framework import viewsets, status
+from rest_framework.permissions import AllowAny
 
 from shop.filters import ProductFilter
 from shop.models import *
+from shop.serializers import SubscriptionSerializer
 
 
 def home(request):
@@ -115,3 +119,32 @@ def checkout(request):
         'cart_items': cart_items
     }
     return render(request, 'shop/checkout.html', context)
+
+
+def subscription_check(request):
+    return render(request, 'shop/qrcode_post_request.html')
+
+
+class SubscriptionViewSet(viewsets.ModelViewSet):
+    queryset = Subscription.objects.all()
+    serializer_class = SubscriptionSerializer
+    permission_classes = (AllowAny, )
+
+    def list(self, request, *args, **kwargs):
+        sub = self.queryset.all()
+        serializer = self.serializer_class(sub, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(request=self.request.user)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def update(self, request, *args, **kwargs):
+        partial = True
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)

@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 
@@ -90,3 +92,17 @@ class ShippingAddress(models.Model):
 
     def __str__(self):
         return str(self.address)
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey('users.MyUser', on_delete=models.CASCADE, blank=True, null=True)
+    start_date = models.DateField(auto_now_add=True)
+    end_date = models.DateField(auto_now_add=True)
+    visits = models.IntegerField(default=12)
+    is_active = models.BooleanField(default=True)
+
+
+class SubscriptionDate(models.Model):
+    subscription = models.ForeignKey(Subscription, on_delete=models.CASCADE)
+    visit_date = models.DateField()
+

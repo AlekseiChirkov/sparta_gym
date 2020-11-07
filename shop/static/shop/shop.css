@@ -453,8 +453,7 @@ ul li a:hover{
   display: flex;
   justify-content: space-between;
 }
-.product__name, .product__type{
-  width: 50%;
+.product__name, .product__type{ахаха
   margin: 0;
   padding: 0;
 }
