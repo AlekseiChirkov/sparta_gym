@@ -9,6 +9,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.permissions import AllowAny
+from django_filters.rest_framework import DjangoFilterBackend
 
 from shop.filters import ProductFilter
 from shop.models import *
@@ -155,5 +156,10 @@ class SubscriptionSearchListAPIView(ListAPIView):
     permission_classes = (AllowAny, )
     queryset = Subscription.objects.all()
     serializer_class = SubscriptionSerializer
-    filter_backends = [SearchFilter]
-    search_fields = ['user', 'visits', 'start_date', 'end_date']
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_fields = [
+        'user', 'id'
+    ]
+    search_fields = [
+        'user', 'id'
+    ]
