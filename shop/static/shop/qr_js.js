@@ -23,9 +23,9 @@ const postVisit = () => {
   ).then((response) => {
     response.json().then((data) => {
       let userData = { ...data[0] };
-      let visitDates = new Array(userData.visit_dates);
-      let today = new Date()
-      visitDates.push(today)
+//      let visitDates = new Array(userData.visit_dates);
+//      let today = new Date()
+//      visitDates.push(today)
       fetch(`https://spartagym.herokuapp.com/api/subscription/${userData.user}/`, {
         method: "PUT",
         headers: {
@@ -35,7 +35,7 @@ const postVisit = () => {
           user: userData.user,
           id: userData.id,
           visits: userData.visits - 1,
-          visit_dates: visitDates
+//          visit_dates: visitDates
         }),
       })
         .then((response) => {
@@ -58,24 +58,24 @@ const render = (isSuccess, data) => {
   let visits = data.visits;
 
   CONTAINER.innerHTML = `
-              ${
-                isSuccess
-                  ? SUUCCESS_SVG +
-                    `<div class="result-container__info">
-                  <h2>Успешно</h2>
-                  <p>у Вас осталось ${visits} посещений до ${
-                      date.getDate() +
-                      "." +
-                      date.getMonth() +
-                      "." +
-                      date.getFullYear()
-                    }</p>
-                </div>`
-                  : ERROR_SVG +
-                    `<div class="result-container__info">
-                  <h2>Ошибка</h2>
-                </div>`
-              }`;
+  ${
+    isSuccess
+      ? SUUCCESS_SVG +
+        `<div class="result-container__info">
+      <h2>Успешно</h2>
+      <p>у Вас осталось ${visits} посещений до ${
+          date.getDate() +
+          "." +
+          date.getMonth() +
+          "." +
+          date.getFullYear()
+        }</p>
+    </div>`
+      : ERROR_SVG +
+        `<div class="result-container__info">
+      <h2>Ошибка</h2>
+    </div>`
+  }`;
 };
 
 window.onload = () => {
