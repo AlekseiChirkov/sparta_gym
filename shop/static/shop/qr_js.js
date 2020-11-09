@@ -48,7 +48,7 @@ const postVisit = () => {
           user: userData.user,
           id: userData.id,
           visits: userData.visits - 1,
-          visit_dates: userData.visit_dates + formattedToday
+          visit_dates: [...userData.visit_dates, formattedToday]
         }),
       })
         .then((response) => {
