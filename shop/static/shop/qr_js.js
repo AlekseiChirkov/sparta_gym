@@ -23,9 +23,22 @@ const postVisit = () => {
   ).then((response) => {
     response.json().then((data) => {
       let userData = { ...data[0] };
-//      let visitDates = new Array(userData.visit_dates);
-//      let today = new Date()
-//      visitDates.push(today)
+      let today = Date();
+      function formatDate(date) {
+          var d = new Date(date),
+              month = '' + (d.getMonth() + 1),
+              day = '' + d.getDate(),
+              year = d.getFullYear();
+
+          if (month.length < 2)
+              month = '0' + month;
+          if (day.length < 2)
+              day = '0' + day;
+
+          return [year, month, day].join('-');
+      }
+      let formattedToday = formatDate(today)
+
       fetch(`https://spartagym.herokuapp.com/api/subscription/${userData.user}/`, {
         method: "PUT",
         headers: {
@@ -35,7 +48,7 @@ const postVisit = () => {
           user: userData.user,
           id: userData.id,
           visits: userData.visits - 1,
-//          visit_dates: visitDates
+          visit_dates: userData.visit_dates + formattedToday
         }),
       })
         .then((response) => {
