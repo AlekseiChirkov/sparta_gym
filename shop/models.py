@@ -1,4 +1,5 @@
 import datetime
+from django.contrib.postgres.fields import ArrayField
 
 from django.db import models
 
@@ -99,10 +100,7 @@ class Subscription(models.Model):
     start_date = models.DateField(auto_now_add=True)
     end_date = models.DateField(auto_now_add=True)
     visits = models.PositiveIntegerField(default=12)
+    visit_dates = ArrayField(models.DateField(), size=12, null=True, blank=True)
     is_active = models.BooleanField(default=True)
 
-
-class SubscriptionDate(models.Model):
-    subscription = models.ForeignKey(Subscription, on_delete=models.CASCADE)
-    visit_date = models.DateField()
 

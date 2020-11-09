@@ -23,6 +23,9 @@ const postVisit = () => {
   ).then((response) => {
     response.json().then((data) => {
       let userData = { ...data[0] };
+      let visitDates = new Array(userData.visit_dates);
+      let today = new Date()
+      visitDates.push(today)
       fetch(`https://spartagym.herokuapp.com/api/subscription/${userData.user}/`, {
         method: "PUT",
         headers: {
@@ -32,6 +35,7 @@ const postVisit = () => {
           user: userData.user,
           id: userData.id,
           visits: userData.visits - 1,
+          visit_dates: visitDates
         }),
       })
         .then((response) => {
