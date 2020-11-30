@@ -13,7 +13,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from shop.filters import ProductFilter
 from shop.models import *
-from shop.serializers import SubscriptionSerializer, SubscriptionReadableSerializer
+from shop.serializers import SubscriptionSerializer
 
 
 def home(request):
@@ -62,10 +62,13 @@ def cart(request):
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cart_items = order.get_cart_items
+        subscription = Subscription.objects.get(customer=customer)
+        visited_dates = subscription.visit_dates
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_items': 0}
         cart_items = order['get_cart_items']
+        visited_dates = 'У вас нет абонемента.'
 
     context = {
         'username': username,
@@ -74,7 +77,8 @@ def cart(request):
         'age': age,
         'items': items,
         'order': order,
-        'cart_items': cart_items
+        'cart_items': cart_items,
+        'dates': visited_dates
     }
     return render(request, 'shop/profile.html', context)
 

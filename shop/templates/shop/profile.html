@@ -124,8 +124,12 @@
     </div>
 
     <div class="subscription">
-        <div id="subscription">
-
+        <div id="subscription" class="subscription__card">
+            {% for date in dates %}
+            <div class="dates">
+                <h6>{{ date }}</h6>
+            </div>
+            {% endfor %}
         </div>
     </div>
 
