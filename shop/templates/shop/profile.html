@@ -125,11 +125,17 @@
 
     <div class="subscription">
         <div id="subscription" class="subscription__card">
-            {% for date in dates %}
-            <div class="dates">
-                <h6>{{ date }}</h6>
+            <div class="visits">
+                {% for date in dates %}
+                    <div class="dates">
+                        <h5>{{ forloop.counter }}</h5>
+                        <h6>{{ date }}</h6>
+                    </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+        </div>
+        <div class="stocks">
+
         </div>
     </div>
 
@@ -173,7 +179,7 @@
         colorDark: "#000000",
         toTable: false,
         ecclevel: 1,
-        noBorder: false,
+        noBorder: true,
         borderSize: 4,
       });
 
