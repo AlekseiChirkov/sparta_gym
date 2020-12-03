@@ -104,22 +104,16 @@
       {% if user.profile.image %}
         <img src="{{ user.profile.image.url }}" alt="" class="avatar">
       {% else %}
-        <img src="" alt="Here must be your image, please upload it in your profile update">
+        <img src="" alt="Загрузите ваш аватар" class="avatar">
       {% endif %}
         <div class="user-info">
-        {{ name }} {{ surname }}<br>{{ age }} год(а)/лет
+        {{ name }}<br>{{ surname }}<br>Возраст:<br>{{ age }} лет
         </div>
         <form method="post" action="/accounts/logout/" class="logout-form">
             {% csrf_token %}
+            <button class="edit">Редактировать профиль</button>
             <button class="logout">Выйти</button>
         </form>
-    {% else %}
-        <div class="login-requires">
-            Пожалуйста, войдите что-бы продолжить.
-        </div>
-        <div class="login-btn">
-            <a href="">Войти</a>
-        </div>
     {% endif %}
     </div>
 
@@ -128,7 +122,7 @@
             <div class="visits">
                 {% for date in dates %}
                     <div class="dates">
-                        <h5>{{ forloop.counter }}</h5>
+                        <h5>Посещение<br>№{{ forloop.counter }}</h5>
                         <h6>{{ date }}</h6>
                     </div>
                 {% endfor %}

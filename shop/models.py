@@ -1,7 +1,9 @@
 import datetime
+
 from django.contrib.postgres.fields import ArrayField
 
 from django.db import models
+from django.db.models import UniqueConstraint
 
 
 class ProductType(models.Model):
@@ -95,12 +97,18 @@ class ShippingAddress(models.Model):
         return str(self.address)
 
 
+def get_subscription_expired_date():
+    return (datetime.datetime.now() + datetime.timedelta(30)).date()
+
+
 class Subscription(models.Model):
     customer = models.ForeignKey('users.Customer', on_delete=models.CASCADE, blank=True, null=True)
     start_date = models.DateField(auto_now_add=True)
-    end_date = models.DateField(auto_now_add=True)
+    end_date = models.DateField(default=get_subscription_expired_date)
     visits = models.PositiveIntegerField(default=12)
     visit_dates = ArrayField(models.DateField(), size=12, null=True, blank=True)
     is_active = models.BooleanField(default=True)
 
+    class Meta:
+        unique_together = ('customer', 'end_date',)
 

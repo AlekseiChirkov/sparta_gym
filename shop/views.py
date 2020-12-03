@@ -1,4 +1,5 @@
 import json
+import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -62,8 +63,12 @@ def cart(request):
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cart_items = order.get_cart_items
-        subscription = Subscription.objects.get(customer=customer)
-        visited_dates = subscription.visit_dates
+        visited_dates = []
+        try:
+            subscription = Subscription.objects.get(customer=customer)
+            visited_dates = subscription.visit_dates
+        except Subscription.DoesNotExist:
+            visited_dates = ['У вас нет действующего абонемента']
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_items': 0}
