@@ -120,12 +120,18 @@
     <div class="subscription">
         <div id="subscription" class="subscription__card">
             <div class="visits">
-                {% for date in dates %}
-                    <div class="dates">
-                        <h5>Посещение<br>№{{ forloop.counter }}</h5>
-                        <h6>{{ date }}</h6>
+                {% if date in dates %}
+                    {% for date in dates %}
+                        <div class="dates">
+                            <h5>Посещение<br>№{{ forloop.counter }}</h5>
+                            <h6>{{ date }}</h6>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-sub">
+                        <h4>Здесь будут показаны даты ваших посещений.</h4>
                     </div>
-                {% endfor %}
+                {% endif %}
             </div>
         </div>
         <div class="stocks">
