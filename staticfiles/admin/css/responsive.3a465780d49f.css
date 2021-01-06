@@ -43,7 +43,7 @@ input[type="submit"], button {
         justify-content: flex-start;
     }
 
-    #branding h1 {
+    #branding h2 {
         margin: 0 0 8px;
         font-size: 20px;
         line-height: 1.2;
@@ -417,7 +417,7 @@ input[type="submit"], button {
         padding: 15px 20px;
     }
 
-    .login #branding h1 {
+    .login #branding h2 {
         margin: 0;
     }
 

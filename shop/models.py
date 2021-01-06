@@ -1,13 +1,15 @@
 import datetime
 
-from django.contrib.postgres.fields import ArrayField
-
 from django.db import models
-from django.db.models import UniqueConstraint
+from django.contrib.postgres.fields import ArrayField
 
 
 class ProductType(models.Model):
     type_name = models.CharField(max_length=64)
+
+    class Meta:
+        verbose_name = 'Тип продукта'
+        verbose_name_plural = 'Типы продуктов'
 
     def __str__(self):
         return str(self.type_name)
@@ -22,6 +24,11 @@ class Product(models.Model):
     description = models.TextField(max_length=256, default=None)
     image = models.ImageField(upload_to="products")
     date = models.DateField(auto_now_add=True)
+    digital = models.BooleanField(default=False, blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
 
     def __str__(self):
         return str(self.name)
@@ -40,6 +47,10 @@ class Post(models.Model):
     text = models.TextField(max_length=1024)
     date = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = 'Пост/Новость'
+        verbose_name_plural = 'Посты/Новости'
+
     def __str__(self):
         return str(self.title)
 
@@ -53,8 +64,22 @@ class Order(models.Model):
     complete = models.BooleanField(default=False, null=True, blank=True)
     transaction_id = models.CharField(max_length=256, null=True)
 
+    class Meta:
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+
     def __str__(self):
         return str(self.id)
+
+    @property
+    def shipping(self):
+        shipping = False
+        orderitems = self.orderitem_set.all()
+        print(orderitems)
+        for i in orderitems:
+            if not i.product.digital:
+                shipping = True
+        return shipping
 
     @property
     def get_cart_total(self):
@@ -74,6 +99,11 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
+    digital = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'Заказанный товар'
+        verbose_name_plural = 'Заказанные товары'
 
     def __str__(self):
         return str(self.product)
@@ -87,11 +117,15 @@ class OrderItem(models.Model):
 class ShippingAddress(models.Model):
     customer = models.ForeignKey('users.Customer', on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
-    city = models.CharField(max_length=256, null=True)
-    state = models.CharField(max_length=256, null=True)
-    address = models.CharField(max_length=256, null=True)
-    zip_code = models.CharField(max_length=64, null=True)
+    city = models.CharField(max_length=256, blank=True, null=True)
+    state = models.CharField(max_length=256, blank=True, null=True)
+    address = models.CharField(max_length=256, blank=True, null=True)
+    zip_code = models.CharField(max_length=64, blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Адрес доставки'
+        verbose_name_plural = 'Адреса доставки'
 
     def __str__(self):
         return str(self.address)
@@ -110,5 +144,6 @@ class Subscription(models.Model):
     is_active = models.BooleanField(default=True)
 
     class Meta:
+        verbose_name = 'Абонемент'
+        verbose_name_plural = 'Абонементы'
         unique_together = ('customer', 'end_date',)
-

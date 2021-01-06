@@ -4,9 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>
+      {% block title %}
+      Shop
+      {% endblock %}
+  </title>
   {% load static %}
   <link rel="stylesheet" href="{% static 'shop/shop.css' %}">
+  <link rel="stylesheet" href="{% static 'shop/checkout.css' %}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script type="text/javascript">
     var user = '{{request.user}}'
@@ -26,6 +31,24 @@
         return cookieValue;
       }
     const csrftoken = getToken('csrftoken');
+
+    function getCookie(name){
+        var cookieArr = document.cookie.split(';');
+        for (var i = 0; i < cookieArr.length; i++) {
+            var cookiePair = cookieArr[i].split('=');
+            if (name == cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+    var cart = JSON.parse(getCookie('cart'))
+    if (cart == undefined) {
+        cart = {}
+        console.log('Cart was created!')
+        document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
+    }
+    console.log('Cart:', cart)
   </script>
 </head>
 <body>
@@ -37,7 +60,11 @@
             <a href="/" class="signup_header__link">Главная</a>
           </li>
           <li>
-            <a href="/profile/cart/" class="signup_header__link">Профиль</a>
+            {% if not user_id %}
+                <a href="/users/signup/" class="signup_header__link">Профиль</a>
+            {% else %}
+                <a href="/user/profile/{{user_id}}/" class="signup_header__link">Профиль</a>
+            {% endif %}
           </li>
           <li>
             <a href="/#gallery" class="signup_header__link">Галерея</a>
@@ -53,7 +80,7 @@
             <a href="/shop" class="signup_header__link active_link">Магазин</a>
           </li>
           <li>
-            <a href="" class="signup_header__link">Акции</a>
+            <a href="/user/cart/" class="signup_header__link">Корзина</a>
           </li>
         </ul>
       </div>
@@ -76,7 +103,11 @@
                               <a href="/" class="header__link">Главная</a>
                           </li>
                           <li>
-                              <a href="/profile/cart/" class="header__link">Профиль</a>
+                              {% if not user_id %}
+                                  <a href="/users/signup/" class="header__link">Профиль</a>
+                              {% else %}
+                                  <a href="/user/profile/{{user_id}}/" class="header__link">Профиль</a>
+                              {% endif %}
                           </li>
                           <li>
                               <a href="/#gallery" class="header__link">Галерея</a>
@@ -88,7 +119,7 @@
                               <a href="/shop" class="header__link">Магазин</a>
                           </li>
                           <li>
-                              <a href="" class="header__link">Акции</a>
+                              <a href="/user/cart/" class="header__link">Корзина</a>
                           </li>
                       </ul>
                   </nav>
@@ -97,6 +128,7 @@
       </div>
   </div>
 
+  {% block content %}
   <div class="content">
     <form method="post" class="form_filter">{% csrf_token %}
       <div class="product_filters">
@@ -104,7 +136,9 @@
         <button class="filters sort_btn" id="sort_btn" type="submit">Сортировать</button>
         {{ product_filter.form.name }}
         <div class="filters cart_btn" id="cart_btn">
-          <div class="cart"><a href="/profile/cart/">Корзина - {{ cart_items }}</a></div>
+          <div class="cart">
+                <a href="/user/cart/">Корзина - {{ cart_items }}</a>
+          </div>
           <img class="cart_icon" src="{% static 'shop/img/icons/cart.png' %}" alt="">
         </div>
       </div>
@@ -137,7 +171,7 @@
       </div>
     </div>
   </div>
-
+  {% endblock %}
 
 
     <script src="http://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -149,6 +183,5 @@
     crossorigin="anonymous"></script>
     <script src="{% static 'shop/cart.js' %}"></script>
     <script src="{% static 'shop/header.js' %}"></script>
-    <script src="{% static 'shop/favorite.js' %}"></script>
 </body>
 </html>

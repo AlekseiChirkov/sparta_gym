@@ -3,7 +3,7 @@ import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import ListAPIView
@@ -15,11 +15,18 @@ from django_filters.rest_framework import DjangoFilterBackend
 from shop.filters import ProductFilter
 from shop.models import *
 from shop.serializers import SubscriptionSerializer
+from shop.forms import EditProfileModelForm
+from shop.services import cart_data, guest_order
 
 
 def home(request):
     posts = Post.objects.order_by('date')[:3]
-    return render(request, 'shop/home.html', {'posts': posts})
+    user_id = request.user.id
+    context = {
+        'posts': posts,
+        'user_id': user_id
+    }
+    return render(request, 'shop/home.html', context)
 
 
 def train_constructor(request):
@@ -28,15 +35,9 @@ def train_constructor(request):
 
 @csrf_protect
 def shop(request):
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        cart_items = order.get_cart_items
-    else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        cart_items = order['get_cart_items']
+    user_id = request.user.id
+    data = cart_data(request)
+    cart_items = data['cart_items']
 
     products = Product.objects.all()
     product_filter = ProductFilter(request.POST, queryset=products)
@@ -45,58 +46,36 @@ def shop(request):
         'products': products,
         'product_filter': product_filter,
         'cart_items': cart_items,
+        'user_id': user_id
     }
     return render(request, 'shop/shop.html', context)
 
 
 @csrf_protect
-@login_required(login_url='users:login')
 def cart(request):
-    username = request.user.username
-    name = request.user.profile.name
-    surname = request.user.profile.surname
-    age = 0
-    if request.user.profile.birthday:
-        age = int(datetime.datetime.today().year) - int(request.user.profile.birthday.year)
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        cart_items = order.get_cart_items
-        visited_dates = []
-        try:
-            subscription = Subscription.objects.get(customer=customer)
-            visited_dates = subscription.visit_dates
-        except Subscription.DoesNotExist:
-            visited_dates = ['У вас нет действующего абонемента']
-    else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        cart_items = order['get_cart_items']
-        visited_dates = 'У вас нет абонемента.'
+    user_id = request.user.id
+
+    data = cart_data(request)
+    cart_items = data['cart_items']
+    order = data['order']
+    items = data['items']
 
     context = {
-        'username': username,
-        'name': name,
-        'surname': surname,
-        'age': age,
         'items': items,
         'order': order,
         'cart_items': cart_items,
-        'dates': visited_dates
+        'user_id': user_id
     }
-    return render(request, 'shop/profile.html', context)
+    return render(request, 'shop/cart.html', context)
 
 
 def update_item(request):
     data = json.loads(request.body)
-
     product_id = data['productId']
     action = data['action']
 
     customer = request.user.customer
     product = Product.objects.get(id=product_id)
-
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     order_item, created = OrderItem.objects.get_or_create(order=order, product=product)
 
@@ -114,22 +93,94 @@ def update_item(request):
 
 
 def checkout(request):
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        cart_items = order.get_cart_items
-    else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        cart_items = order['get_cart_items']
+    user_id = request.user.id
+    user = request.user
+    data = cart_data(request)
+    cart_items = data['cart_items']
+    order = data['order']
+    items = data['items']
 
     context = {
         'items': items,
         'order': order,
-        'cart_items': cart_items
+        'cart_items': cart_items,
+        'user_id': user_id,
+        'user': user,
     }
     return render(request, 'shop/checkout.html', context)
+
+
+def process_order(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.loads(request.body)
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    else:
+        customer, order = guest_order(request, data)
+
+    total_str = data['form']['total']
+    total_str = total_str.replace(',', '.')
+    total = float(total_str)
+    order.transaction_id = transaction_id
+    if total == order.get_cart_total:
+        order.complete = True
+    order.save()
+
+    if order.shipping:
+        ShippingAddress.objects.create(
+            customer=customer,
+            order=order,
+            address=data['shipping']['address'],
+            city=data['shipping']['city'],
+            state=data['shipping']['state'],
+            zip_code=data['shipping']['zipcode'],
+        )
+
+    return JsonResponse('Payment complete!', safe=False)
+
+
+@csrf_protect
+@login_required(login_url='users:login')
+def profile(request, id):
+    user_id = request.user.id
+    if request.method == 'POST':
+        form = EditProfileModelForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/profile/cart/{user_id}/')
+    else:
+        form = EditProfileModelForm(instance=request.user.profile)
+
+    username = request.user.username
+    name = request.user.profile.name
+    surname = request.user.profile.surname
+    age = 0
+    if request.user.profile.birthday:
+        age = int(datetime.datetime.today().year) - int(request.user.profile.birthday.year)
+
+    visited_dates = []
+    subscription = []
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        try:
+            subscription = Subscription.objects.get(customer=customer)
+            visited_dates = subscription.visit_dates
+        except Subscription.DoesNotExist:
+            visited_dates = ['У вас нет действующего абонемента']
+
+    context = {
+        'username': username,
+        'subscription': subscription,
+        'name': name,
+        'surname': surname,
+        'age': age,
+        'dates': visited_dates,
+        'update': form,
+        'user_id': user_id
+    }
+    return render(request, 'shop/profile.html', context)
 
 
 def subscription_check(request):
@@ -139,7 +190,7 @@ def subscription_check(request):
 class SubscriptionViewSet(viewsets.ModelViewSet):
     queryset = Subscription.objects.all()
     serializer_class = SubscriptionSerializer
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
 
     def list(self, request, *args, **kwargs):
         sub = self.queryset.all()
@@ -162,7 +213,7 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
 
 
 class SubscriptionSearchListAPIView(ListAPIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
     queryset = Subscription.objects.all()
     serializer_class = SubscriptionSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]

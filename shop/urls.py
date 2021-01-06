@@ -15,10 +15,15 @@ router.register('users', user_views.UserViewSet)
 urlpatterns = [
     path('', views.home, name='home'),
     path('shop/', views.shop, name='shop'),
-    path('profile/cart/', views.cart, name='cart'),
+    path('user/cart/', views.cart, name='cart'),
+    path('user/profile/<int:id>/', views.profile, name='profile'),
     path('subscription-check/', views.subscription_check, name='subscription-check'),
+    path('checkout/', views.checkout, name='check-out'),
+    path('training-programs/', views.train_constructor, name='train_constructor'),
+
+    path('update-item/', views.update_item, name='update-item'),
+    path('process-order/', views.process_order, name='process-order'),
+
     path('api/', include(router.urls)),
     path('api/subscription-search/', views.SubscriptionSearchListAPIView.as_view(), name='sub-search'),
-    path('update-item/', views.update_item, name='update-item'),
-    path('training-programs/', views.train_constructor, name='train_constructor'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

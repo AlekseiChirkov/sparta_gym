@@ -17,7 +17,11 @@
               <a href="/" class="signup_header__link">Главная</a>
             </li>
             <li>
-              <a href="/profile/cart/" class="signup_header__link">Профиль</a>
+              {% if not user_id %}
+                  <a href="/users/signup/" class="signup_header__link">Профиль</a>
+              {% else %}
+                  <a href="/user/profile/{{user_id}}/" class="signup_header__link">Профиль</a>
+              {% endif %}
             </li>
             <li>
               <a href="/#gallery" class="signup_header__link">Галерея</a>
@@ -33,7 +37,7 @@
               <a href="/shop" class="signup_header__link">Магазин</a>
             </li>
             <li>
-              <a href="" class="signup_header__link">Акции</a>
+              <a href="/user/cart/" class="signup_header__link">Корзина</a>
             </li>
           </ul>
         </div>
@@ -57,7 +61,11 @@
                                 <a href="/" class="header__link">Главная</a>
                             </li>
                             <li>
-                                <a href="/users/profile/" class="header__link">Профиль</a>
+                                {% if not user_id %}
+                                    <a href="/users/signup/" class="header__link">Профиль</a>
+                                {% else %}
+                                    <a href="/user/profile/{{user_id}}/" class="header__link">Профиль</a>
+                                {% endif %}
                             </li>
                             <li>
                                 <a href="/#gallery" class="header__link">Галерея</a>
@@ -69,7 +77,7 @@
                                 <a href="/shop" class="header__link">Магазин</a>
                             </li>
                             <li>
-                                <a href="#" class="header__link">Акции</a>
+                                <a href="/user/cart/" class="header__link">Корзина</a>
                             </li>
                         </ul>
                     </nav>
@@ -83,7 +91,7 @@
     <div class="content">
       <div class="content__container" id="signup">
         <img class="signup_logo" src="{% static 'shop/img/Logos/GS@72x-8.png' %}" alt="">
-        <h1 class="welcome">Добро пожаловать в <br> здоровый образ жизни!</h1>
+        <h2 class="welcome">Добро пожаловать в <br> здоровый образ жизни!</h2>
         <h2 class="signup">Регистрация</h2>
         <form action="" method="post" class="signup__form">
           {% csrf_token %}

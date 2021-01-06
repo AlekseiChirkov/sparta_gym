@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'shop/header.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/checkout.css' %}">
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+        var id = '{{user.id}}'
+
+        function getToken(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getToken('csrftoken');
+    </script>
+</head>
+<body>
+<div class="main_wrapper">
+    <div class="signup_container">
+      <div class="signup_header__menu">
+        <ul class="signup_header__list left">
+          <li>
+            <a href="/" class="signup_header__link">Главная</a>
+          </li>
+          <li>
+              {% if not user_id %}
+                <a href="/users/signup/" class="signup_header__link">Профиль</a>
+              {% else %}
+                <a href="/user/profile/{{user_id}}/" class="signup_header__link">Профиль</a>
+              {% endif %}
+          </li>
+          <li>
+            <a href="/#gallery" class="signup_header__link">Галерея</a>
+          </li>
+          <li>
+        </ul>
+        <img src="{% static 'shop/img/Logos/VectorheaderLogo.svg' %}" alt="" class="header_logo">
+        <ul class="signup_header__list right">
+          <li>
+            <a href="/#contacts" class="signup_header__link">Контакты</a>
+          </li>
+          <li>
+            <a href="/shop" class="signup_header__link">Магазин</a>
+          </li>
+          <li>
+            <a href="/user/cart/" class="signup_header__link">Корзина</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>
+
+<div class="wrapper">
+  <div class="container">
+      <div class="header">
+          <div class="header__body">
+              <a href="#" class="header__logo">
+                  <img id="logo" src="{% static 'shop/img/Logos/WS@72x-8.png' %}">
+              </a>
+              <div class="header__burger">
+                  <span></span>
+              </div>
+              <nav class="header__menu">
+                  <ul class="header__list">
+                      <li>
+                          <a href="/" class="header__link">Главная</a>
+                      </li>
+                      <li>
+                          {% if not user_id %}
+                            <a href="/users/signup/" class="header__link">Профиль</a>
+                          {% else %}
+                            <a href="/user/profile/{{user_id}}/" class="header__link">Профиль</a>
+                          {% endif %}
+                      </li>
+                      <li>
+                          <a href="/#gallery" class="header__link">Галерея</a>
+                      </li>
+                      <li>
+                          <a href="/#contacts" class="header__link">Контакты</a>
+                      </li>
+                      <li>
+                          <a href="/shop" class="header__link">Магазин</a>
+                      </li>
+                      <li>
+                          <a href="/user/cart/" class="header__link">Корзина</a>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

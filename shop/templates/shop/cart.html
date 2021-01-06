@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'shop/cart.css' %}">
+  <script src="{% static 'shop/VanillaQR.min.js' %}"></script>
+  <script type="text/javascript">
+    var user = '{{request.user}}'
+    var id = '{{user.id}}'
+
+    function getToken(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    const csrftoken = getToken('csrftoken');
+    function getCookie(name){
+        var cookieArr = document.cookie.split(';');
+        for (var i = 0; i < cookieArr.length; i++) {
+            var cookiePair = cookieArr[i].split('=');
+            if (name == cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+    var cart = JSON.parse(getCookie('cart'))
+    if (cart == undefined) {
+        cart = {}
+        console.log('Cart was created!')
+        document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
+    }
+    console.log('Cart:', cart)
+  </script>
+</head>
+<body>
+    <div class="main_wrapper">
+        <div class="signup_container">
+          <div class="signup_header__menu">
+            <ul class="signup_header__list left">
+              <li>
+                <a href="/" class="signup_header__link">Главная</a>
+              </li>
+              <li>
+                  {% if not user_id %}
+                    <a href="/users/signup/" class="signup_header__link">Профиль</a>
+                  {% else %}
+                    <a href="/user/profile/{{user_id}}/" class="signup_header__link">Профиль</a>
+                  {% endif %}
+              </li>
+              <li>
+                <a href="/#gallery" class="signup_header__link">Галерея</a>
+              </li>
+              <li>
+            </ul>
+            <img src="{% static 'shop/img/Logos/VectorheaderLogo.svg' %}" alt="" class="header_logo">
+            <ul class="signup_header__list right">
+              <li>
+                <a href="/#contacts" class="signup_header__link">Контакты</a>
+              </li>
+              <li>
+                <a href="/shop" class="signup_header__link">Магазин</a>
+              </li>
+              <li>
+                <a href="/user/cart/" class="signup_header__link">Корзина</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+      <div class="container">
+          <div class="header">
+              <div class="header__body">
+                  <a href="#" class="header__logo">
+                      <img id="logo" src="{% static 'shop/img/Logos/WS@72x-8.png' %}">
+                  </a>
+                  <div class="header__burger">
+                      <span></span>
+                  </div>
+                  <nav class="header__menu">
+                      <ul class="header__list">
+                          <li>
+                              <a href="/" class="header__link">Главная</a>
+                          </li>
+                          <li>
+                              {% if not user_id %}
+                                <a href="/users/signup/" class="header__link">Профиль</a>
+                              {% else %}
+                                <a href="/user/profile/{{user_id}}/" class="header__link">Профиль</a>
+                              {% endif %}
+                          </li>
+                          <li>
+                              <a href="/#gallery" class="header__link">Галерея</a>
+                          </li>
+                          <li>
+                              <a href="/#contacts" class="header__link">Контакты</a>
+                          </li>
+                          <li>
+                              <a href="/shop" class="header__link">Магазин</a>
+                          </li>
+                          <li>
+                              <a href="/user/cart/" class="header__link">Корзина</a>
+                          </li>
+                      </ul>
+                  </nav>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="content">
+        {% block cart %}
+        <div class="products-list">
+            <div class="products-head">Корзина</div>
+            <table class="cart">
+                <tr class="cart-row">
+                    <th>Товар</th>
+                    <th>Цена</th>
+                    <th>Кол-во</th>
+                    <th>Сумма</th>
+                </tr>
+                {% for item in items %}
+                <tr class="products-row">
+                    <th>{{ item.product.name }}</th>
+                    <th>{{ item.product.price|floatformat:2}} сом</th>
+                    <th class="quantity">
+                        <div class="quantity-item">{{ item.quantity }}</div>
+                        <div class="quantity-item quantity-arrows">
+                            <i data-product="{{ item.product.id }}" data-action="add" class="arrow up update_cart"></i>
+                            <i data-product="{{ item.product.id }}" data-action="remove" class="arrow down update_cart"></i>
+                        </div>
+                    </th>
+                    <th>{{ item.get_total|floatformat:2 }} сом</th>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="total-price">
+                <div class="total-items">Кол-во: {{ order.get_cart_items }}</div>
+                <div class="total-sum">Итого: {{ order.get_cart_total|floatformat:2 }} сом</div>
+                <a href="/checkout/" class="order-btn">Заказать</a>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+
+
+
+    <script src="{% static 'shop/jquery/jQuery.min.js' %}"></script>
+    <script src="{% static 'shop/header.js' %}"></script>
+    <script src="{% static 'shop/cart.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    </body>
+</html>

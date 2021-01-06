@@ -52,11 +52,11 @@ p {
     line-height: 140%;
 }
 
-h1,h2,h3,h4,h5 {
+h2,h2,h3,h4,h5 {
     font-weight: bold;
 }
 
-h1 {
+h2 {
     margin: 0 0 20px;
     font-weight: 300;
     font-size: 20px;
@@ -200,7 +200,7 @@ div.help ul {
     cursor: help;
 }
 
-p img, h1 img, h2 img, h3 img, h4 img, td img {
+p img, h2 img, h2 img, h3 img, h4 img, td img {
     vertical-align: middle;
 }
 
@@ -851,7 +851,7 @@ table#change-history tbody th {
     float: left;
 }
 
-#branding h1 {
+#branding h2 {
     padding: 0;
     margin: 0 20px 0 0;
     font-weight: 300;
@@ -859,7 +859,7 @@ table#change-history tbody th {
     color: #f5dd5d;
 }
 
-#branding h1, #branding h1 a:link, #branding h1 a:visited {
+#branding h2, #branding h2 a:link, #branding h2 a:visited {
     color: #f5dd5d;
 }
 

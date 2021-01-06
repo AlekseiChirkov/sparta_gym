@@ -1,0 +1,179 @@
+{% extends 'shop/shop.html' %}
+
+{% block title %}
+Оформление заказа
+{% endblock %}
+
+
+{% block content %}
+<div class="checkout-container">
+    <div class="form">
+        <form action=""  id="form">
+            <div class="user-info" id="user-info">
+                <div class="form-field">
+                    <input type="text" class="form-control" name="name" placeholder="Имя" required>
+                </div>
+                <div class="form-field">
+                    <input type="email" class="form-control" name="email" placeholder="Email" required>
+                </div>
+            </div>
+            <div id="shipping-info" class="shipping-info">
+                <hr>
+                <h5>Информация о доставке</h5>
+                <hr>
+                <div class="form-field">
+                    <input type="text" class="form-control" name="address" placeholder="Адрес" required>
+                </div>
+                <div class="form-field">
+                    <input type="text" class="form-control" name="city" placeholder="Город" required>
+                </div>
+                <div class="form-field">
+                    <input type="text" class="form-control" name="state" placeholder="Регион" required>
+                </div>
+                <div class="form-field">
+                    <input type="text" class="form-control" name="zipcode" placeholder="Почтовый индекс" required>
+                </div>
+            </div>
+            <hr>
+            <div class="submit-button">
+                <input type="submit" id="form-button" class="shipping-button" value="Продолжить">
+            </div>
+        </form>
+    </div>
+
+    <div class="items">
+        <hr>
+        <h5>Суммарный заказ</h5>
+        <table class="checkout-table">
+                <tr class="products-row">
+                    <th colspan="2">Товар</th>
+                    <th>Цена</th>
+                    <th>Кол-во</th>
+                    <th>Всего</th>
+                </tr>
+            {% for item in items %}
+                <tr class="products-row">
+                    <th><img class="table__image" src="{{item.product.imageURL}}" alt="product image"></th>
+                    <th>{{ item.product.name }}</th>
+                    <th>{{ item.product.price|floatformat:2}} сом</th>
+                    <th>{{ item.quantity }}</th>
+                    <th>{{ item.get_total|floatformat:2 }} сом</th>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="summary">
+            <h5>Товаров: {{ cart_items }} шт.</h5>
+            <h5>На сумму: {{ order.get_cart_total|floatformat:2 }} сом</h5>
+            <hr>
+            <a href="/user/cart/">Назад в корзину</a>
+        </div>
+    </div>
+
+    <div class="payment hidden" id="payment-info">
+        <h4>PayPal</h4>
+        <div class="paypal-button-container" id="paypal-button-container"></div>
+    </div>
+</div>
+
+<script src="http://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+
+<script>
+    var total = '{{order.get_cart_total}}'
+    // Render the PayPal button into #paypal-button-container
+    paypal.Buttons({
+
+        style: {
+            color: 'black',
+            shape: 'rect'
+        },
+
+        // Set up the transaction
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: parseFloat(total).toFixed(2)
+                    }
+                }]
+            });
+        },
+
+        // Finalize the transaction
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                // Show a success message to the buyer
+                submitFormData();
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
+
+<script>
+    var shipping = '{{order.shipping}}';
+    var user = '{{request.user}}';
+
+    if (user != 'AnonymousUser') {
+        document.getElementById('user-info').innerHTML = '';
+    }
+
+    var form = document.getElementById('form');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log('Form submitted...');
+        document.getElementById('form-button').classList.add('hidden');
+        document.getElementById('payment-info').classList.remove('hidden');
+    });
+
+<!--    document.getElementById('make-payment').addEventListener('click', function(e){-->
+<!--        submitFormData();-->
+<!--    })-->
+    function submitFormData () {
+        console.log('Payment button clicked')
+
+        var userFormData = {
+            'name': null,
+            'email': null,
+            'total': total,
+        }
+
+        var shippingInfo = {
+            'address': null,
+            'city': null,
+            'state': null,
+            'zipcode': null,
+        }
+
+        if (shipping != 'False') {
+            shippingInfo.address = form.address.value
+            shippingInfo.city = form.city.value
+            shippingInfo.state = form.state.value
+            shippingInfo.zipcode = form.zipcode.value
+        }
+        if (user == 'AnonymousUser') {
+            userFormData.name = form.name.value
+            userFormData.email = form.email.value
+        }
+
+        var url = '/process-order/'
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({'form': userFormData, 'shipping': shippingInfo})
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+            alert('Transaction completed');
+
+            cart = {};
+            document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/';
+
+            window.location.href = "{% url 'shop:home' %}";
+        })
+    }
+</script>
+{% endblock %}

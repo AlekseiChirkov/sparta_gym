@@ -38,7 +38,7 @@
             <a href="/" class="signup_header__link">Главная</a>
           </li>
           <li>
-            <a href="/profile/cart/" class="signup_header__link active_link">Профиль</a>
+            <a href="/profile/cart/{{user_id}}" class="signup_header__link active_link">Профиль</a>
           </li>
           <li>
             <a href="/#gallery" class="signup_header__link">Галерея</a>
@@ -54,7 +54,7 @@
             <a href="/shop" class="signup_header__link">Магазин</a>
           </li>
           <li>
-            <a href="" class="signup_header__link">Акции</a>
+            <a href="/user/cart/" class="signup_header__link">Корзина</a>
           </li>
         </ul>
       </div>
@@ -77,7 +77,7 @@
                               <a href="/" class="header__link">Главная</a>
                           </li>
                           <li>
-                              <a href="/profile/cart/" class="header__link">Профиль</a>
+                              <a href="/profile/cart/{{user_id}}" class="header__link">Профиль</a>
                           </li>
                           <li>
                               <a href="/#gallery" class="header__link">Галерея</a>
@@ -89,7 +89,7 @@
                               <a href="/shop" class="header__link">Магазин</a>
                           </li>
                           <li>
-                              <a href="#" class="header__link">Акции</a>
+                              <a href="/user/cart/" class="header__link">Корзина</a>
                           </li>
                       </ul>
                   </nav>
@@ -109,27 +109,39 @@
         <div class="user-info">
         {{ name }}<br>{{ surname }}<br>Возраст:<br>{{ age }} лет
         </div>
-        <form method="post" action="/accounts/logout/" class="logout-form">
-            {% csrf_token %}
-            <button class="edit">Редактировать профиль</button>
-            <button class="logout">Выйти</button>
-        </form>
+        <div class="logout-form">
+            <button class="edit" onclick="openForm()">Редактировать профиль</button>
+            <form method="post" action="/accounts/logout/" class="logout-form">
+                {% csrf_token %}
+                <button class="logout">Выйти</button>
+            </form>
+        </div>
     {% endif %}
     </div>
 
     <div class="subscription">
         <div id="subscription" class="subscription__card">
+            <div class="abonement">Абонемент</div>
+            <div class="qr" id="qr"></div>
             <div class="visits">
-                {% if date in dates %}
-                    {% for date in dates %}
+                {% if subscription %}
+                    {% if dates %}
+                        {% for date in dates %}
+                            <div class="dates">
+                                <h5>Посещение<br>№{{ forloop.counter }}</h5>
+                                <h6>{{ date }}</h6>
+                            </div>
+                        {% endfor %}
+                    {% else %}
                         <div class="dates">
-                            <h5>Посещение<br>№{{ forloop.counter }}</h5>
-                            <h6>{{ date }}</h6>
+                            <h6>Здесь будут показаны даты ваших посещений</h6>
                         </div>
-                    {% endfor %}
+                    {% endif %}
                 {% else %}
-                    <div class="no-sub">
-                        <h4>Здесь будут показаны даты ваших посещений.</h4>
+                    <div class="dates">
+                        <h6>
+                            У вас нет действующего абонемента
+                        </h6>
                     </div>
                 {% endif %}
             </div>
@@ -138,40 +150,24 @@
 
         </div>
     </div>
-
-    <div class="products-list">
-        <div class="products-head">Корзина</div>
-        <table class="cart">
-            <tr class="cart-row">
-                <th>Наименование товара</th>
-                <th>Цена</th>
-                <th>Кол-во</th>
-                <th>Сумма</th>
-            </tr>
-            {% for item in items %}
-            <tr class="products-row">
-                <th>{{ item.product.name }}</th>
-                <th>{{ item.product.price|floatformat:2}} сом</th>
-                <th class="quantity">
-                    <div class="quantity-item">{{ item.quantity }}</div>
-                    <div class="quantity-item quantity-arrows">
-                        <i data-product="{{ item.product.id }}" data-action="add" class="arrow up update_cart"></i>
-                        <i data-product="{{ item.product.id }}" data-action="remove" class="arrow down update_cart"></i>
-                    </div>
-                </th>
-                <th>{{ item.get_total|floatformat:2 }} сом</th>
-            </tr>
-            {% endfor %}
-        </table>
-        <div class="total-price">
-            <div class="total-items">Кол-во: {{ order.get_cart_items }}</div>
-            <div class="total-sum">Итого: {{ order.get_cart_total|floatformat:2 }} сом</div>
-            <div class="order-btn">Заказать</div>
-        </div>
-    </div>
   </div>
-  <script>
 
+    <div class="form-popup" id="myForm">
+        <form action="/profile/cart/{{user_id}}/" class="form-container" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Редактирование профиля</h2>
+            <p>Имя: <br>{{ update.name }}</p>
+            <p>Фамилия: <br>{{ update.surname }}</p>
+            <p>Телефон: <br>{{ update.phone }}</p>
+            <p>Дата рождения: <br>{{ update.birthday }}</p>
+            <p>Аватар<br>{{ update.image }}</p>
+            <button type="submit" class="edit-btn">Изменить</button>
+        </form>
+        <button class="close-btn cancel" onclick="closeForm()">Закрыть</button>
+    </div>
+
+
+  <script>
     var qr = new VanillaQR({
         url: `http://spartagym.herokuapp.com/subscription-check/?userId={{user.id}}`,
         size: 200,
@@ -183,10 +179,11 @@
         borderSize: 4,
       });
 
-    document.getElementById("subscription").appendChild(qr.domElement);
+    document.getElementById("qr").appendChild(qr.domElement);
   </script>
-    <script src="{% static 'shop/cart.js' %}"></script>
-    <script src="{% static 'shop/header.js' %}"></script>
+  <script src="{% static 'shop/jquery/jQuery.min.js' %}"></script>
+  <script src="{% static 'shop/header.js' %}"></script>
+  <script src="{% static 'shop/cart.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

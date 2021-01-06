@@ -1,7 +1,7 @@
 /* The navbar is fixed at >= 980px wide, so add padding to the body to prevent
 content running up underneath it. */
 
-h1 {
+h2 {
   font-weight: 300;
 }
 

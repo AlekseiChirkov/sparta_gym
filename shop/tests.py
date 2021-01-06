@@ -1,8 +1,12 @@
 from django.test import TestCase
-from .models import ProductType
+
+from .models import *
 
 
-class ProductModelTest(TestCase):
+today_date = datetime.date.today()
+
+
+class ProductTypeModelTest(TestCase):
     def setUp(self) -> None:
         self.product_type = ProductType.objects.create(
             type_name="Sparta Gym's Gainer"
@@ -10,7 +14,44 @@ class ProductModelTest(TestCase):
 
     def test_saving_and_retrieving_products(self):
         self.assertEqual(self.product_type.type_name, "Sparta Gym's Gainer")
-        self.assertEqual(self.product_type.id, 1)
+        self.assertEqual(self.product_type.id, 2)
+
+
+class ProductModelTest(TestCase):
+    def setUp(self) -> None:
+        self.product_type = ProductType.objects.create(
+            type_name="Sparta Gym's Gainer"
+        )
+        self.product = Product.objects.create(
+            name='Gainer',
+            product_type=self.product_type,
+            price=100.00,
+            weight=2.5,
+            portions=25,
+            description='Description',
+            date=today_date
+        )
+
+    def test_product_model_data(self):
+        self.assertEqual(self.product.name, 'Gainer')
+        self.assertEqual(self.product.product_type, self.product_type)
+        self.assertEqual(self.product.price, 100.00)
+        self.assertEqual(self.product.weight, 2.5)
+        self.assertEqual(self.product.portions, 25)
+        self.assertEqual(self.product.description, 'Description')
+        self.assertEqual(self.product.date, today_date)
+
+
+class PostModelTest(TestCase):
+    def setUp(self) -> None:
+        self.post = Post.objects.create(
+            title='Title',
+            text='Text',
+        )
+
+    def test_post_model_data(self):
+        self.assertEqual(self.post.title, 'Title')
+        self.assertEqual(self.post.text, 'Text')
 
 
 # from django.test import TestCase

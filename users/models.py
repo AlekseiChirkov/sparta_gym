@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from PIL import Image
 
 
 class MyUserManager(BaseUserManager):
@@ -38,6 +39,10 @@ class MyUser(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
+
     def __str__(self):
         return str(self.username)
 
@@ -62,16 +67,34 @@ class Profile(models.Model):
     surname = models.CharField(max_length=64, null=True)
     phone = models.CharField(max_length=64, null=True)
     birthday = models.DateField(null=True)
-    image = models.ImageField(upload_to="avatars", null=True)
+    image = models.ImageField(upload_to="avatars", blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Профиль пользователя'
+        verbose_name_plural = 'Профили пользователей'
 
     def __str__(self):
         return f'{self.name} {self.surname}'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.image:
+            img = Image.open(self.image.path)
+            if img.mode in ("RGBA", "P"): img = img.convert("RGB")
+            if img.height > 300 or img.width > 300:
+                output_size = (300, 300)
+                img.thumbnail(output_size)
+                img.save(self.image.path)
 
 
 class Customer(models.Model):
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=64, null=True)
     email = models.EmailField(null=True)
+
+    class Meta:
+        verbose_name = 'Клиент'
+        verbose_name_plural = 'Клиенты'
 
     def __str__(self):
         return str(self.name)

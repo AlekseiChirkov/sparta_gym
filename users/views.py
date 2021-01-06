@@ -1,5 +1,3 @@
-import datetime
-
 from django.http import HttpResponse
 from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
@@ -8,7 +6,6 @@ from django.contrib.auth import login, authenticate
 from django.utils.encoding import force_bytes, force_text
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_protect
-from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
 from rest_framework import viewsets, status
 from rest_framework.permissions import AllowAny
@@ -21,6 +18,7 @@ from .forms import *
 
 @csrf_protect
 def signup_form(request):
+    user_id = request.user.id
     if request.method == 'POST':
         signup = UserCreationForm(request.POST)
 
@@ -44,7 +42,7 @@ def signup_form(request):
             return HttpResponse('Пожалуйста, подтвердите ваш email, чтобы завершить регистрацию.')
     else:
         signup = UserCreationForm()
-    return render(request, 'shop/registration.html', {'signup': signup})
+    return render(request, 'shop/registration.html', {'signup': signup, 'user_id': user_id})
 
 
 @csrf_protect
@@ -55,12 +53,15 @@ def login_form(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('shop:cart')
+            user_id = request.user.id
+            return redirect(f'/user/profile/{user_id}/')
         else:
             message = "Неверный логин или пароль."
             return render(request, 'shop/login.html', {'message': message})
-
-    context = {}
+    user_id = request.user.id
+    context = {
+        'user_id': user_id
+    }
     return render(request, 'shop/login.html', context)
 
 
