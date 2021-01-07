@@ -146,25 +146,22 @@
                 {% endif %}
             </div>
         </div>
-        <div class="stocks">
-
-        </div>
     </div>
   </div>
 
-    <div class="form-popup" id="myForm">
-        <form action="/profile/cart/{{user_id}}/" class="form-container" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <h2>Редактирование профиля</h2>
-            <p>Имя: <br>{{ update.name }}</p>
-            <p>Фамилия: <br>{{ update.surname }}</p>
-            <p>Телефон: <br>{{ update.phone }}</p>
-            <p>Дата рождения: <br>{{ update.birthday }}</p>
-            <p>Аватар<br>{{ update.image }}</p>
-            <button type="submit" class="edit-btn">Изменить</button>
-        </form>
-        <button class="close-btn cancel" onclick="closeForm()">Закрыть</button>
-    </div>
+  <div class="form-popup" id="myForm">
+      <form action="/profile/cart/{{user_id}}/" class="form-container" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <h2>Редактирование профиля</h2>
+          <p>Имя: <br>{{ update.name }}</p>
+          <p>Фамилия: <br>{{ update.surname }}</p>
+          <p>Телефон: <br>{{ update.phone }}</p>
+          <p>Дата рождения: <br>{{ update.birthday }}</p>
+          <p>Аватар<br>{{ update.image }}</p>
+          <button type="submit" class="edit-btn">Изменить</button>
+      </form>
+      <button class="close-btn cancel" onclick="closeForm()">Закрыть</button>
+  </div>
 
 
   <script>

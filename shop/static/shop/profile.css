@@ -9,7 +9,7 @@ body{
   background-size: cover;
   padding: 0;
   margin: 0;
-  height: 100%;
+  height: auto;
   font-family: 'Lato', sans-serif;
 }
 ul li a:hover{
@@ -256,10 +256,11 @@ ul li a:hover{
 .profile{
     display: grid;
     justify-content: center;
-    height: auto;
+    height: 100%;
     background: #fff;
     border-radius: 8px;
-    width: 100%;
+    width: 90%;
+    padding: 10px;
 }
 .profile img{
     margin: 10px auto;
@@ -279,7 +280,7 @@ ul li a:hover{
     text-align: center;
 }
 .logout-form{
-    margin: auto auto 20px auto;
+    margin: 20px auto 20px auto;
 }
 .edit{
     width: 90%;
@@ -346,29 +347,84 @@ ul li a:hover{
 .subscription__card{
     background: linear-gradient(90deg, #FF6600 0%, #FFFF33 100%);
     border-radius: 8px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    padding: 10px;
+    justify-content: center;
 }
-
+.abonement{
+    grid-row: 1/2;
+    grid-column: 1/4;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+.qr{
+    grid-row: 2/3;
+    grid-column: 1/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.visits{
+    grid-column: 2/4;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 90%;
+    margin: 0 auto;
+}
+.dates{
+    width: 90%;
+    margin: 5px auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px solid #000;
+    border-radius: 8px
+}
+.dates h5{
+    width: 100%;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 2px solid #000;
+}
+.dates h6{
+    width: 100%;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+}
 
 @media screen and (max-width: 768px){
     .content{
         display: grid;
         grid-template-columns: 1fr;
-        margin: 120px auto auto auto;
+        grid-gap: 2em;
+        margin: 120px auto 20px auto;
+        height: auto;
     }
-
-
 
     .profile{
         grid-row: 2/3;
+        width: auto;
+        height: auto;
     }
-
-
 
     .subscription{
         display: grid;
         grid-template-columns: 1fr;
         margin: 0 auto;
-        width: 100%;
+        width: auto;
+        height: auto;
     }
     .subscription__card{
         display: flex;
