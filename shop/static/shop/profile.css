@@ -403,7 +403,9 @@ ul li a:hover{
     margin: 0;
     padding: 10px 0;
 }
-
+.no-sub{
+    width: auto;
+}
 @media screen and (max-width: 768px){
     .content{
         display: grid;
