@@ -405,6 +405,7 @@ ul li a:hover{
 }
 .no-sub{
     width: auto;
+    border: none;
 }
 @media screen and (max-width: 768px){
     .content{
