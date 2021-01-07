@@ -150,7 +150,7 @@
   </div>
 
   <div class="form-popup" id="myForm">
-      <form action="/profile/cart/{{user_id}}/" class="form-container" method="post" enctype="multipart/form-data">
+      <form action="/user/profile/{{user_id}}/" class="form-container" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <h2>Редактирование профиля</h2>
           <p>Имя: <br>{{ update.name }}</p>

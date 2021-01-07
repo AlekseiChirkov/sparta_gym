@@ -149,7 +149,7 @@ def profile(request, id):
         form = EditProfileModelForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             form.save()
-            return redirect(f'/profile/cart/{user_id}/')
+            return redirect(f'/user/profile/{user_id}/')
     else:
         form = EditProfileModelForm(instance=request.user.profile)
 
