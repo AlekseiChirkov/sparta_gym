@@ -218,8 +218,8 @@ class SubscriptionSearchListAPIView(ListAPIView):
     serializer_class = SubscriptionSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = [
-        'user', 'id'
+        'customer', 'id'
     ]
     search_fields = [
-        'user', 'id'
+        'customer', 'id'
     ]
