@@ -10,12 +10,12 @@ def create_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
 
-@receiver(post_save, sender=Profile)
+@receiver(post_save, sender=MyUser)
 def create_customer(sender, instance, created, **kwargs):
     if created:
         Customer.objects.create(
             user=instance,
-            name=instance.name,
-            email=instance.user.email
+            name=instance.username,
+            email=instance.email
         )
 
