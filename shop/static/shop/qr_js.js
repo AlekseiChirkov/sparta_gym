@@ -13,7 +13,7 @@ const postVisit = () => {
   const userId = urlParams.get("userId");
 
   fetch(
-    `https://spartagym.herokuapp.com/api/subscription-search/?user=${userId}`,
+    `https://spartagym.com.kg/api/subscription-search/?user=${userId}`,
     {
       method: "GET",
       headers: {
@@ -39,7 +39,7 @@ const postVisit = () => {
       }
       let formattedToday = formatDate(today)
 
-      fetch(`https://spartagym.herokuapp.com/api/subscription/${userData.user}/`, {
+      fetch(`https://spartagym.com.kg/api/subscription/${userData.user}/`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

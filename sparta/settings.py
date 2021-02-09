@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # apps
     'users.apps.UsersConfig',
     'shop.apps.ShopConfig',
+    'face_detection.apps.FaceDetectionConfig',
 
     # rest_framework
     'rest_framework',

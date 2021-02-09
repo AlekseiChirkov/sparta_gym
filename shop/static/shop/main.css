@@ -1305,6 +1305,13 @@ body {
     color: #BDC3C7;
     margin-top: 30px;
 }
+.info-2 #email{
+    font-size: 20px;
+}
+.info-2 *{
+    color: white;
+    text-decoration: none;
+}
 .info-3 img{
     width: 200px;
     height: 210px;
@@ -1361,6 +1368,10 @@ body {
     transform: rotate(0deg);
     text-shadow: 0px 0px 1px #131313, 0px 0px 1px #070707, 0px 0px 1px black, 0px 0px 1px black;
 }
+.con h2 a{
+    font-size: 28px;
+    color: white;
+}
 @media(max-width: 1680px){
     .contacts-info{
         flex-direction: column;
@@ -1395,8 +1406,9 @@ body {
     .con h4{
         font-size: 36px;
     }
-    .con h2{
+    .con h2 a{
         font-size: 28px;
+        color: white;
     }
     .con p{
         font-size: 20px;

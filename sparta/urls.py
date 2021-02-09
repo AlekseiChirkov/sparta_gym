@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('', include('shop.urls')),
+    path('face-detection/', include('face_detection.urls')),
     path('accounts/', include('allauth.urls')),
     path('rest_auth/', include('rest_auth.urls')),
     path('rest_auth/registration/', include('rest_auth.registration.urls')),
