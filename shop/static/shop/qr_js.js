@@ -39,16 +39,16 @@ const postVisit = () => {
       }
       let formattedToday = formatDate(today)
 
-      fetch(`https://spartagym.com.kg/api/subscription/${userData.user}/`, {
+      fetch(`https://spartagym.com.kg/api/subscription/${userData.customer}/`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          user: userData.user,
+          customer: userData.customer,
           id: userData.id,
           visits: userData.visits - 1,
-          visit_dates: [...userData.visit_dates, formattedToday]
+          visit_dates: userData.visit_dates ? [...userData.visit_dates, formattedToday] : [formattedToday],
         }),
       })
         .then((response) => {
@@ -67,6 +67,7 @@ const postVisit = () => {
 };
 
 const render = (isSuccess, data) => {
+  console.log(data);
   let date = new Date(data.end_date);
   let visits = data.visits;
 
