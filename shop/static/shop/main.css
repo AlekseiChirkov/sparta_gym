@@ -980,13 +980,13 @@ body {
     margin-top: 30px;
 }
 .subs ol{
-    width: 90%;
+    width: 85%;
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 171%;
-    text-align: center;
+    text-align: left;
     letter-spacing: 0.7px;
     color: #FFFFFF;
     margin: 20px auto;
