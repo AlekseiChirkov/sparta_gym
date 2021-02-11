@@ -958,6 +958,10 @@ body {
     letter-spacing: 1.2px;
     color: #FFFFFF;
 }
+.subs-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
 .subs-title{
     background: linear-gradient(90deg, #E100FF 0%, #F80759 100%), #ED213A;
     background-blend-mode: multiply, normal;

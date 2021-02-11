@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # cors
     'corsheaders',
@@ -59,7 +60,6 @@ INSTALLED_APPS = [
     'django_filters',
 
     # rest_auth
-    'django.contrib.sites',
     'rest_auth',
     'rest_auth.registration',
     'allauth',
