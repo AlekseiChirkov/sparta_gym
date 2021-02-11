@@ -980,16 +980,19 @@ body {
     margin-top: 30px;
 }
 .subs ol{
+    width: 90%;
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 171%;
-    align-items: center;
+    text-align: center;
     letter-spacing: 0.7px;
     color: #FFFFFF;
-    padding-left: 25%;
-    margin-top: 20px;
+    margin: 20px auto;
+}
+.privilege{
+    text-align: left;
 }
 @media screen and (max-width: 1680px){
     .subs-list{
