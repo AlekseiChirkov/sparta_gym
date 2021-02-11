@@ -21,9 +21,11 @@ from shop.services import cart_data, guest_order
 
 def home(request):
     posts = Post.objects.order_by('date')[:3]
+    prices = PriceList.objects.all()
     user_id = request.user.id
     context = {
         'posts': posts,
+        'prices': prices,
         'user_id': user_id
     }
     return render(request, 'shop/home.html', context)

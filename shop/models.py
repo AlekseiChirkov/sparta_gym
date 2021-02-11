@@ -58,6 +58,26 @@ class Post(models.Model):
         return self.text
 
 
+class PriceList(models.Model):
+    TYPES = (
+        ('Одноразовая тренировка', 'Одноразовая тренировка'),
+        ('Тренировки с тренером', 'Тренировки с тренером'),
+        ('Неделя с тренером', 'Неделя с тренером'),
+        ('Самостоятельные тренировки', 'Самостоятельные тренировки')
+    )
+    training_type = models.CharField(choices=TYPES, max_length=64)
+    price = models.IntegerField()
+    description_1 = models.CharField(max_length=64, blank=True, null=True)
+    description_2 = models.CharField(max_length=64, blank=True, null=True)
+    description_3 = models.CharField(max_length=64, blank=True, null=True)
+    description_4 = models.CharField(max_length=64, blank=True, null=True)
+    description_5 = models.CharField(max_length=64, blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Прайс-лист'
+        verbose_name_plural = 'Прайс-листы'
+
+
 class Order(models.Model):
     customer = models.ForeignKey('users.Customer', on_delete=models.SET_NULL, blank=True, null=True)
     date_ordered = models.DateTimeField(auto_now_add=True)

@@ -24,6 +24,13 @@ class PostAdmin(admin.ModelAdmin):
         model = Post
 
 
+class PriceListAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in PriceList._meta.fields]
+
+    class Meta:
+        model = PriceList
+
+
 class OrderAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Order._meta.fields]
 
@@ -56,6 +63,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
 admin.site.register(ProductType, ProductTypeAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Post, PostAdmin)
+admin.site.register(PriceList, PriceListAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(ShippingAddress, ShippingAddressAdmin)

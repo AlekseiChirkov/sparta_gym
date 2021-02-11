@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="X5Dr19z48RQQ0Z9KGVY0Kk9ING5q7CjnOOMzChktlHM" />
     <title>SpartaGYM</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'shop/main.css' %}" type="text/css">
@@ -172,18 +173,28 @@
             <h2>НАШИ ЦЕНЫ</h2>
         </div>
         <div class="subs-list">
-            <div class="subs a">
-                <h2>4000 сом/месяц</h2>
-                <div class="subs-title">Тренировки с тренером</div>
-                <ol start="1" class="privilege">
-                    <li>Безлимитные посещения</li>
-                    <li>Тренер всегда рядом</li>
-                    <li>Собственная программа</li>
-                    <li>Советы от тренера</li>
-                    <li>Свободное время посещения</li>
-                </ol>
-            </div>
-            <div class="subs b">
+            {% for price in prices %}
+                <div class="subs">
+                    <h2>{{ price.price }} сом/месяц</h2>
+                    <div class="subs-title">{{ price.training_type }}</div>
+                    <ol start="1" class="privilege">
+                        <li>{{ price.description_1 }}</li>
+                        {% if price.description_2 %}
+                            <li>{{ price.description_2 }}</li>
+                        {% endif %}
+                        {% if price.description_3 %}
+                            <li>{{ price.description_3 }}</li>
+                        {% endif %}
+                        {% if price.description_4 %}
+                            <li>{{ price.description_4 }}</li>
+                        {% endif %}
+                        {% if price.description_5 %}
+                            <li>{{ price.description_5 }}</li>
+                        {% endif %}
+                    </ol>
+                </div>
+            {% endfor %}
+            <!--<div class="subs b">
                 <h2>2500 сом/месяц</h2>
                 <div class="subs-title">Тренировки с тренером</div>
                 <ol>
@@ -270,7 +281,7 @@
                     <li>Тренировка с тренером</li>
                     <li>Советы от тренера</li>
                 </ol>
-            </div>
+            </div>-->
         </div>
     </div>
 
