@@ -170,7 +170,7 @@ body {
     flex-direction: row;
     align-items: center;
     position: relative;
-    background: url('img/Gallery/desription.png');
+    background: url('img/Gallery/desription.webp');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -205,6 +205,7 @@ body {
 .description button{
     width: 223px;
     height: 50px;
+    margin: 25px 0 0 0;
     border: none;
     border-radius: 10px;
     background: linear-gradient(105.17deg, #FF2E00 -18.4%, #FF007A 112.98%);
@@ -669,7 +670,7 @@ body {
     padding: 100px 0;
     text-align: center;
     position: relative;
-    background: url('img/Gallery/services.png');
+    background: url('img/Gallery/services.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
@@ -1001,6 +1002,16 @@ body {
     .price h4{
         font-size: 24px;
     }
+    .subs-list{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media screen and (max-width: 1280px){
+    .subs-list{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }
 @media screen and (max-width: 768px){
     .price{
@@ -1016,11 +1027,17 @@ body {
         font-size: 16px;
     }
 }
+@media screen and (max-width: 640px){
+    .subs-list{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
 
 
 .news{
     padding: 100px 0;
-    background: url('img/Gallery/gallerybg.png');
+    background: url('img/Gallery/gallerybg.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
